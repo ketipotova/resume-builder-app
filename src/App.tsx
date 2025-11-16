@@ -1,35 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { ResumeProvider } from './contexts/ResumeContext';
+import { Landing } from './pages/Landing';
+import { ChatBuilder } from './pages/ChatBuilder';
+import { UploadResume } from './pages/UploadResume';
+import { TemplateSelector } from './pages/TemplateSelector';
+import { Enhancement } from './pages/Enhancement';
+import { FinalPreview } from './pages/FinalPreview';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <ResumeProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/chat" element={<ChatBuilder />} />
+          <Route path="/upload" element={<UploadResume />} />
+          <Route path="/templates" element={<TemplateSelector />} />
+          <Route path="/enhance" element={<Enhancement />} />
+          <Route path="/preview" element={<FinalPreview />} />
+        </Routes>
+      </BrowserRouter>
+    </ResumeProvider>
+  );
 }
 
-export default App
+export default App;
