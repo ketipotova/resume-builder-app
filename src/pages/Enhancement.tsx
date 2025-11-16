@@ -9,7 +9,7 @@ import { scrapeJobPosting } from '../lib/supabase';
 
 export function Enhancement() {
   const navigate = useNavigate();
-  const { resume, setResume, jobPosting, setJobPosting } = useResume();
+  const { resume, setResume, setJobPosting } = useResume();
   const [isEnhancing, setIsEnhancing] = useState(false);
   const [isTailoring, setIsTailoring] = useState(false);
   const [jobUrl, setJobUrl] = useState('');

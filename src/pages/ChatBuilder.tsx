@@ -9,7 +9,7 @@ import { createEmptyResume } from '../utils/resume-helpers';
 
 export function ChatBuilder() {
   const navigate = useNavigate();
-  const { resume, setResume, conversationHistory, setConversationHistory } = useResume();
+  const { setResume, conversationHistory, setConversationHistory } = useResume();
   const [isLoading, setIsLoading] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
 

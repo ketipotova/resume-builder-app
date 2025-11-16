@@ -1,6 +1,5 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MessageSquare, Upload, Sparkles, FileText, Target, Download } from 'lucide-react';
+import { MessageSquare, Upload, Sparkles, FileText, Target } from 'lucide-react';
 import { Button } from '../components/common/Button';
 
 export function Landing() {
