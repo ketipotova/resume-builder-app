@@ -1,73 +1,177 @@
-# React + TypeScript + Vite
+# AI-Powered Resume Builder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, AI-powered resume builder that uses Claude AI to help users create, enhance, and tailor resumes to specific job positions.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🤖 **AI Chat Interface** - Create resumes through natural conversation
+- 📄 **File Upload** - Parse existing resumes (PDF/DOCX)
+- 🎨 **5 Professional Templates** - Choose from multiple resume designs
+- ✨ **AI Enhancement** - Improve resume quality and impact
+- 🎯 **Job Tailoring** - Adapt resume to specific job postings
+- 📥 **PDF Export** - Download professional PDFs
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend**: React 18 + TypeScript + Vite
+- **Styling**: Tailwind CSS
+- **AI**: Claude API (Sonnet 4)
+- **Backend**: Supabase Edge Functions
+- **PDF Generation**: @react-pdf/renderer
+- **Deployment**: Vercel
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Node.js 18+
+- npm or yarn
+- Claude API key
+- Supabase account
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Installation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. Clone the repository:
+```bash
+git clone https://github.com/ketipotova/resume-builder-app.git
+cd resume-builder-app
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+2. Install dependencies:
+```bash
+npm install
 ```
+
+3. Set up environment variables:
+```bash
+cp .env.example .env
+```
+
+Edit `.env` and add your API keys:
+```env
+VITE_CLAUDE_API_KEY=your_claude_api_key
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+4. Start the development server:
+```bash
+npm run dev
+```
+
+5. (Optional) Start Supabase locally:
+```bash
+supabase start
+```
+
+### Deploying to Vercel
+
+1. Install Vercel CLI:
+```bash
+npm i -g vercel
+```
+
+2. Link your project:
+```bash
+vercel link
+```
+
+3. Add environment variables to Vercel:
+```bash
+vercel env add VITE_CLAUDE_API_KEY
+vercel env add VITE_SUPABASE_URL
+vercel env add VITE_SUPABASE_ANON_KEY
+```
+
+4. Deploy:
+```bash
+vercel --prod
+```
+
+### Deploying Supabase Edge Functions
+
+1. Link your Supabase project:
+```bash
+supabase link --project-ref your-project-ref
+```
+
+2. Set secrets:
+```bash
+supabase secrets set CLAUDE_API_KEY=your_claude_api_key
+```
+
+3. Deploy functions:
+```bash
+supabase functions deploy scrape-job
+```
+
+## Project Structure
+
+```
+src/
+├── components/       # React components
+│   ├── chat/        # Chat interface components
+│   ├── upload/      # File upload components
+│   ├── resume/      # Resume editor components
+│   ├── templates/   # Resume template components
+│   ├── enhancement/ # AI enhancement components
+│   └── common/      # Shared components
+├── lib/             # Utility libraries
+│   ├── claude-api.ts   # Claude API integration
+│   └── supabase.ts     # Supabase client
+├── types/           # TypeScript type definitions
+├── pages/           # Page components
+├── contexts/        # React contexts
+├── hooks/           # Custom React hooks
+└── utils/           # Utility functions
+```
+
+## CI/CD Pipeline
+
+The project uses GitHub Actions for continuous integration and deployment:
+
+- **On Push to Main**: Automatically deploys to Vercel production
+- **On Pull Request**: Creates preview deployment
+- **Quality Checks**: Linting, type checking, and build validation
+
+## Environment Variables
+
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `VITE_CLAUDE_API_KEY` | Claude API key | Yes |
+| `VITE_SUPABASE_URL` | Supabase project URL | Yes |
+| `VITE_SUPABASE_ANON_KEY` | Supabase anonymous key | Yes |
+
+## Development
+
+### Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+
+### Adding New Templates
+
+1. Create template component in `src/components/templates/designs/`
+2. Implement the template using `@react-pdf/renderer`
+3. Add template to template gallery
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+MIT
+
+## Acknowledgments
+
+- Claude AI by Anthropic
+- Supabase
+- Vercel
+- React PDF Renderer community
