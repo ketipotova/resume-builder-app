@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, CheckCircle, AlertCircle } from 'lucide-react';
 import { FileUploader } from '../components/upload/FileUploader';

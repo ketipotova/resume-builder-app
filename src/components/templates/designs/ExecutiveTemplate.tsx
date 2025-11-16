@@ -174,7 +174,7 @@ export function ExecutiveTemplate({ resume }: ExecutiveTemplateProps) {
         {experience.length > 0 && (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Professional Experience</Text>
-            {experience.map((exp, index) => (
+            {experience.map((exp) => (
               <View key={exp.id} style={styles.experienceItem}>
                 <View style={styles.jobHeader}>
                   <View style={{ flex: 1 }}>
