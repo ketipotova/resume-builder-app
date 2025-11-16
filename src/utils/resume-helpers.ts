@@ -1,12 +1,11 @@
 import type { Resume } from '../types/resume';
-import { v4 as uuidv4 } from 'uuid';
 
 /**
  * Create an empty resume template
  */
 export function createEmptyResume(): Resume {
   return {
-    id: uuidv4(),
+    id: crypto.randomUUID(),
     createdAt: new Date(),
     updatedAt: new Date(),
     personalInfo: {

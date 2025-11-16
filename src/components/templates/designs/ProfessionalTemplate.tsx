@@ -4,7 +4,6 @@ import {
   Text,
   View,
   StyleSheet,
-  Font,
 } from '@react-pdf/renderer';
 import type { Resume } from '../../../types/resume';
 import { parseDate } from '../../../utils/resume-helpers';
