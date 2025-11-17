@@ -39,6 +39,15 @@ export function FinalPreview() {
     return null;
   }
 
+  // Diagnostic logging
+  console.log('=== RESUME DATA DEBUG ===');
+  console.log('Full Name:', resume.personalInfo?.fullName);
+  console.log('Personal Info:', resume.personalInfo);
+  console.log('Skills Object:', resume.skills);
+  console.log('Technical Skills:', resume.skills?.technical);
+  console.log('Soft Skills:', resume.skills?.soft);
+  console.log('========================');
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
