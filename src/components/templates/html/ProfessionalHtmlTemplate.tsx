@@ -43,7 +43,7 @@ export default function ProfessionalHtmlTemplate({ resume }: ProfessionalHtmlTem
             fontWeight: '400',
             color: '#ffffff',
           }}>
-            {resume.personalInfo.fullName}
+            {resume.personalInfo?.fullName || 'Your Name'}
           </h1>
 
 

@@ -43,6 +43,8 @@ export async function generateResumePDF(resume: Resume): Promise<Blob> {
   const component = getTemplateComponent(templateId, resume);
   const htmlString = renderToHTML(component);
 
+  console.log('Generating PDF for resume:', resume.personalInfo?.fullName || 'Unknown');
+
   // Create a temporary container
   const container = document.createElement('div');
   container.innerHTML = htmlString;
@@ -51,6 +53,14 @@ export async function generateResumePDF(resume: Resume): Promise<Blob> {
   document.body.appendChild(container);
 
   try {
+    // Get the element to convert
+    const element = container.firstElementChild as HTMLElement;
+    if (!element) {
+      throw new Error('Failed to create template element');
+    }
+
+    console.log('Template element created, generating PDF...');
+
     // Configure html2pdf options
     const opt = {
       margin: 0,
@@ -71,10 +81,14 @@ export async function generateResumePDF(resume: Resume): Promise<Blob> {
     // Generate PDF
     const pdfBlob = await html2pdf()
       .set(opt)
-      .from(container.firstChild as HTMLElement)
+      .from(element)
       .output('blob');
 
+    console.log('PDF generated successfully');
     return pdfBlob;
+  } catch (error) {
+    console.error('Error in generateResumePDF:', error);
+    throw error;
   } finally {
     // Cleanup
     document.body.removeChild(container);
