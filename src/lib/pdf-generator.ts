@@ -1,3 +1,4 @@
+import React from 'react';
 import { pdf } from '@react-pdf/renderer';
 import type { Resume } from '../types/resume';
 import { ProfessionalTemplate } from '../components/templates/designs/ProfessionalTemplate';
@@ -12,17 +13,17 @@ import { ExecutiveTemplate } from '../components/templates/designs/ExecutiveTemp
 function getTemplateComponent(templateId: string, resume: Resume) {
   switch (templateId) {
     case 'professional':
-      return ProfessionalTemplate({ resume });
+      return React.createElement(ProfessionalTemplate, { resume });
     case 'modern':
-      return ModernTemplate({ resume });
+      return React.createElement(ModernTemplate, { resume });
     case 'minimalist':
-      return MinimalistTemplate({ resume });
+      return React.createElement(MinimalistTemplate, { resume });
     case 'creative':
-      return CreativeTemplate({ resume });
+      return React.createElement(CreativeTemplate, { resume });
     case 'executive':
-      return ExecutiveTemplate({ resume });
+      return React.createElement(ExecutiveTemplate, { resume });
     default:
-      return ProfessionalTemplate({ resume });
+      return React.createElement(ProfessionalTemplate, { resume });
   }
 }
 
