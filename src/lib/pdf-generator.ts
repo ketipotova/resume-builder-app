@@ -72,7 +72,7 @@ export async function generateResumePDF(resume: Resume): Promise<Blob> {
     const pdfBlob = await html2pdf()
       .set(opt)
       .from(container.firstChild as HTMLElement)
-      .outputPdf('blob');
+      .output('blob');
 
     return pdfBlob;
   } finally {
