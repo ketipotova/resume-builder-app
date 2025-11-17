@@ -91,7 +91,7 @@ export default function ProfessionalHtmlTemplate({ resume }: ProfessionalHtmlTem
       {/* Content */}
       <div style={{ padding: '50px' }}>
         {/* Professional Summary */}
-        {resume.summary && (
+        {resume.summary && resume.summary.trim().length > 0 && (
           <div style={{ marginBottom: '35px' }}>
             <h2 style={{
               fontSize: '20px',
@@ -119,8 +119,8 @@ export default function ProfessionalHtmlTemplate({ resume }: ProfessionalHtmlTem
         )}
 
         {/* Skills */}
-        {((resume.skills?.technical && resume.skills.technical.length > 0) || 
-          (resume.skills?.soft && resume.skills.soft.length > 0)) && (
+        {(resume.skills && ((resume.skills.technical && resume.skills.technical.length > 0) ||
+          (resume.skills.soft && resume.skills.soft.length > 0))) && (
           <div style={{ marginBottom: '35px' }}>
             <h2 style={{
               fontSize: '20px',
@@ -140,7 +140,7 @@ export default function ProfessionalHtmlTemplate({ resume }: ProfessionalHtmlTem
               gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
               gap: '15px',
             }}>
-              {resume.skills?.technical && resume.skills.technical.map((skill, index) => (
+              {resume.skills && resume.skills.technical && resume.skills.technical.map((skill, index) => (
                 <div key={`tech-${index}`} style={{
                   display: 'flex',
                   alignItems: 'flex-start',
@@ -169,7 +169,7 @@ export default function ProfessionalHtmlTemplate({ resume }: ProfessionalHtmlTem
                   </div>
                 </div>
               ))}
-              {resume.skills?.soft && resume.skills.soft.map((skill, index) => (
+              {resume.skills && resume.skills.soft && resume.skills.soft.map((skill, index) => (
                 <div key={`soft-${index}`} style={{
                   display: 'flex',
                   alignItems: 'flex-start',
@@ -348,7 +348,7 @@ export default function ProfessionalHtmlTemplate({ resume }: ProfessionalHtmlTem
         )}
 
         {/* Certifications */}
-        {resume.skills?.certifications && resume.skills.certifications.length > 0 && (
+        {resume.skills && resume.skills.certifications && resume.skills.certifications.length > 0 && (
           <div style={{ marginBottom: '35px' }}>
             <h2 style={{
               fontSize: '20px',

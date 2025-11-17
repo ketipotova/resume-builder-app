@@ -119,10 +119,7 @@ export function FinalPreview() {
                 <h2 className="text-4xl mb-3" style={{ letterSpacing: '1px', fontWeight: '400' }}>
                   {resume.personalInfo.fullName}
                 </h2>
-                <div className="text-lg mb-5" style={{ color: '#a0aec0', fontWeight: '300' }}>
-                  Professional Title
-                </div>
-                <div className="text-sm flex flex-wrap gap-6">
+                <div className="text-sm flex flex-wrap gap-6" style={{ marginTop: '20px' }}>
                   <div className="flex items-center gap-2">
                     <span style={{ color: '#667eea', fontSize: '8px' }}>●</span>
                     {resume.personalInfo.phone}
