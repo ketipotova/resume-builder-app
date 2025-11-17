@@ -40,9 +40,12 @@ export function FinalPreview() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen" style={{
+      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      padding: '20px'
+    }}>
       {/* Header */}
-      <div className="bg-white border-b border-gray-200">
+      <div className="bg-white border-b border-gray-200 rounded-t-lg">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <button
@@ -86,81 +89,167 @@ export function FinalPreview() {
 
       {/* Content */}
       <div className="container mx-auto px-4 py-12">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-width: '210mm'">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            <h1 className="text-3xl font-bold text-white mb-2">
               Your Resume is Ready!
             </h1>
-            <p className="text-gray-600">
+            <p className="text-white/90">
               Review your resume below and download when ready
             </p>
           </div>
 
           {/* Resume Preview Card */}
-          <div className="bg-white rounded-lg shadow-xl overflow-hidden mb-8">
+          <div className="bg-white rounded-lg shadow-2xl overflow-hidden mb-8" style={{ maxWidth: '210mm', margin: '0 auto' }}>
             {/* Header with Dark Gradient */}
-            <div className="bg-gradient-to-br from-gray-700 to-gray-900 text-white px-12 py-10">
-              <h2 className="text-4xl font-normal mb-3 tracking-wide">
-                {resume.personalInfo.fullName}
-              </h2>
-              <div className="text-sm flex flex-wrap gap-6 mt-5">
-                <div className="flex items-center gap-2">
-                  <span className="text-indigo-400 text-xs">●</span>
-                  {resume.personalInfo.phone}
+            <div style={{
+              background: 'linear-gradient(135deg, #2d3748 0%, #1a202c 100%)',
+              position: 'relative',
+              overflow: 'hidden'
+            }} className="text-white px-12 py-10">
+              {/* Decorative circle */}
+              <div style={{
+                position: 'absolute',
+                top: '-50%',
+                right: '-10%',
+                width: '300px',
+                height: '300px',
+                background: 'rgba(255,255,255,0.05)',
+                borderRadius: '50%'
+              }} />
+
+              <div style={{ position: 'relative', zIndex: 1 }}>
+                <h2 className="text-4xl mb-3" style={{ letterSpacing: '1px', fontWeight: '400' }}>
+                  {resume.personalInfo.fullName}
+                </h2>
+                <div className="text-lg mb-5" style={{ color: '#a0aec0', fontWeight: '300' }}>
+                  Professional Title
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-indigo-400 text-xs">●</span>
-                  {resume.personalInfo.email}
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-indigo-400 text-xs">●</span>
-                  {resume.personalInfo.location}
-                </div>
-                {resume.personalInfo.linkedIn && (
+                <div className="text-sm flex flex-wrap gap-6">
                   <div className="flex items-center gap-2">
-                    <span className="text-indigo-400 text-xs">●</span>
-                    {resume.personalInfo.linkedIn}
+                    <span style={{ color: '#667eea', fontSize: '8px' }}>●</span>
+                    {resume.personalInfo.phone}
                   </div>
-                )}
+                  <div className="flex items-center gap-2">
+                    <span style={{ color: '#667eea', fontSize: '8px' }}>●</span>
+                    {resume.personalInfo.email}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span style={{ color: '#667eea', fontSize: '8px' }}>●</span>
+                    {resume.personalInfo.location}
+                  </div>
+                  {resume.personalInfo.linkedIn && (
+                    <div className="flex items-center gap-2">
+                      <span style={{ color: '#667eea', fontSize: '8px' }}>●</span>
+                      {resume.personalInfo.linkedIn}
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
 
-            <div className="p-10 space-y-6">
-
+            <div className="p-12 space-y-9">
               {/* Summary */}
               {resume.summary && (
                 <div>
-                  <h3 className="text-lg font-bold text-gray-800 mb-5 pb-3 border-b-3 border-indigo-500 uppercase tracking-widest">Professional Summary</h3>
-                  <p className="text-gray-600 leading-relaxed">{resume.summary}</p>
+                  <h3 className="text-xl font-semibold mb-5 pb-2.5" style={{
+                    color: '#2d3748',
+                    borderBottom: '3px solid #667eea',
+                    textTransform: 'uppercase',
+                    letterSpacing: '2px'
+                  }}>
+                    Professional Profile
+                  </h3>
+                  <p className="leading-relaxed" style={{ color: '#4a5568', fontSize: '15px' }}>
+                    {resume.summary}
+                  </p>
+                </div>
+              )}
+
+              {/* Skills */}
+              {(resume.skills?.technical?.length > 0 || resume.skills?.soft?.length > 0) && (
+                <div>
+                  <h3 className="text-xl font-semibold mb-5 pb-2.5" style={{
+                    color: '#2d3748',
+                    borderBottom: '3px solid #667eea',
+                    textTransform: 'uppercase',
+                    letterSpacing: '2px'
+                  }}>
+                    Key Competencies
+                  </h3>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {resume.skills?.technical && resume.skills.technical.map((skill, index) => (
+                      <div key={`tech-${index}`} className="flex items-start gap-2.5 p-3 rounded-lg" style={{
+                        background: '#f7fafc',
+                        borderLeft: '3px solid #667eea'
+                      }}>
+                        <div style={{ color: '#667eea', fontWeight: 'bold', marginTop: '2px' }}>●</div>
+                        <div className="flex-1">
+                          <div className="font-semibold" style={{ color: '#2d3748', marginBottom: '3px' }}>{skill}</div>
+                          <div className="text-xs" style={{ color: '#718096' }}>Professional expertise</div>
+                        </div>
+                      </div>
+                    ))}
+                    {resume.skills?.soft && resume.skills.soft.map((skill, index) => (
+                      <div key={`soft-${index}`} className="flex items-start gap-2.5 p-3 rounded-lg" style={{
+                        background: '#f7fafc',
+                        borderLeft: '3px solid #667eea'
+                      }}>
+                        <div style={{ color: '#667eea', fontWeight: 'bold', marginTop: '2px' }}>●</div>
+                        <div className="flex-1">
+                          <div className="font-semibold" style={{ color: '#2d3748', marginBottom: '3px' }}>{skill}</div>
+                          <div className="text-xs" style={{ color: '#718096' }}>Key strength</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
 
               {/* Experience */}
               {resume.experience.length > 0 && (
                 <div>
-                  <h3 className="text-lg font-bold text-gray-800 mb-5 pb-3 border-b-3 border-indigo-500 uppercase tracking-widest">Professional Experience</h3>
+                  <h3 className="text-xl font-semibold mb-5 pb-2.5" style={{
+                    color: '#2d3748',
+                    borderBottom: '3px solid #667eea',
+                    textTransform: 'uppercase',
+                    letterSpacing: '2px'
+                  }}>
+                    Professional Experience
+                  </h3>
                   <div className="space-y-8">
                     {resume.experience.map((exp) => (
                       <div key={exp.id}>
                         <div className="flex justify-between items-start mb-3">
                           <div>
-                            <h4 className="font-semibold text-gray-800 text-lg">{exp.position}</h4>
-                            <p className="text-indigo-500 font-medium mt-1">
+                            <h4 className="text-lg font-semibold" style={{ color: '#2d3748' }}>
+                              {exp.position}
+                            </h4>
+                            <p className="text-base font-medium mt-1" style={{ color: '#667eea' }}>
                               {exp.company} | {exp.location}
                             </p>
                           </div>
-                          <span className="text-xs text-gray-600 bg-gray-100 px-3 py-1.5 rounded-md whitespace-nowrap">
+                          <span className="text-xs px-3 py-1.5 rounded whitespace-nowrap" style={{
+                            background: '#edf2f7',
+                            color: '#4a5568'
+                          }}>
                             {exp.startDate} - {exp.endDate}
                           </span>
                         </div>
                         {exp.achievements && exp.achievements.length > 0 && (
-                          <ul className="list-disc list-inside space-y-1">
-                            {exp.achievements.map((achievement, index) => (
-                              <li key={index} className="text-sm text-gray-700">
-                                {achievement}
-                              </li>
-                            ))}
-                          </ul>
+                          <div className="mt-4">
+                            <div className="font-semibold mb-2 text-sm" style={{ color: '#2d3748' }}>
+                              Key Responsibilities:
+                            </div>
+                            <ul className="space-y-2">
+                              {exp.achievements.map((achievement, index) => (
+                                <li key={index} className="flex items-start gap-2 text-sm" style={{ color: '#4a5568' }}>
+                                  <span style={{ color: '#667eea', fontWeight: 'bold', marginTop: '2px' }}>▸</span>
+                                  <span className="flex-1">{achievement}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
                         )}
                       </div>
                     ))}
@@ -171,40 +260,22 @@ export function FinalPreview() {
               {/* Education */}
               {resume.education.length > 0 && (
                 <div>
-                  <h3 className="text-lg font-bold text-gray-800 mb-5 pb-3 border-b-3 border-indigo-500 uppercase tracking-widest">Education</h3>
+                  <h3 className="text-xl font-semibold mb-5 pb-2.5" style={{
+                    color: '#2d3748',
+                    borderBottom: '3px solid #667eea',
+                    textTransform: 'uppercase',
+                    letterSpacing: '2px'
+                  }}>
+                    Education
+                  </h3>
                   <div className="space-y-5">
                     {resume.education.map((edu) => (
                       <div key={edu.id}>
-                        <div className="font-semibold text-gray-800 text-base">
+                        <div className="font-semibold text-base" style={{ color: '#2d3748' }}>
                           {edu.degree} in {edu.field}
                         </div>
-                        <div className="text-sm text-gray-600 mt-1.5">
+                        <div className="text-sm mt-1.5" style={{ color: '#718096' }}>
                           {edu.institution} | {edu.graduationDate}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Skills */}
-              {(resume.skills?.technical?.length > 0 || resume.skills?.soft?.length > 0) && (
-                <div>
-                  <h3 className="text-lg font-bold text-gray-800 mb-5 pb-3 border-b-3 border-indigo-500 uppercase tracking-widest">Key Competencies</h3>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    {resume.skills?.technical && resume.skills.technical.map((skill, index) => (
-                      <div key={`tech-${index}`} className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg border-l-3 border-indigo-500">
-                        <div className="text-indigo-500 font-bold mt-0.5">●</div>
-                        <div className="flex-1">
-                          <div className="font-semibold text-gray-800">{skill}</div>
-                        </div>
-                      </div>
-                    ))}
-                    {resume.skills?.soft && resume.skills.soft.map((skill, index) => (
-                      <div key={`soft-${index}`} className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg border-l-3 border-indigo-500">
-                        <div className="text-indigo-500 font-bold mt-0.5">●</div>
-                        <div className="flex-1">
-                          <div className="font-semibold text-gray-800">{skill}</div>
                         </div>
                       </div>
                     ))}
@@ -227,30 +298,30 @@ export function FinalPreview() {
               onClick={handleDownload}
               size="lg"
               isLoading={isDownloading}
-              className="w-full md:w-auto"
+              className="w-full md:w-auto bg-white text-purple-600 hover:bg-purple-50"
             >
               <Download className="w-5 h-5 mr-2" />
               Download Resume PDF
             </Button>
 
-            <div className="text-center text-sm text-gray-600 space-y-2">
+            <div className="text-center text-sm text-white/90 space-y-2">
               <p>Your resume is ready to download!</p>
               <div className="flex gap-4 justify-center">
                 <button
                   onClick={() => navigate('/templates')}
-                  className="text-primary-600 hover:underline"
+                  className="text-white hover:underline font-medium"
                 >
                   Change Template
                 </button>
                 <button
                   onClick={() => navigate('/enhance')}
-                  className="text-primary-600 hover:underline"
+                  className="text-white hover:underline font-medium"
                 >
                   Enhance Resume
                 </button>
                 <button
                   onClick={() => navigate('/')}
-                  className="text-primary-600 hover:underline"
+                  className="text-white hover:underline font-medium"
                 >
                   Start New Resume
                 </button>
