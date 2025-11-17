@@ -127,3 +127,51 @@ export function loadResumeFromStorage(): Resume | null {
 export function clearResumeFromStorage(): void {
   localStorage.removeItem('current-resume');
 }
+
+/**
+ * Normalize AI response data to match Resume schema
+ * Handles legacy formats or AI mistakes
+ */
+export function normalizeResumeData(data: any): Resume {
+  const base = createEmptyResume();
+
+  // Handle personalInfo
+  const personalInfo = data.personalInfo || {};
+
+  // Fix fullName if AI used wrong field name
+  if (!personalInfo.fullName && (personalInfo.name || personalInfo.firstName)) {
+    personalInfo.fullName = personalInfo.name ||
+      `${personalInfo.firstName || ''} ${personalInfo.lastName || ''}`.trim();
+  }
+
+  // Handle skills - convert array to object if needed
+  let skills = data.skills || base.skills;
+  if (Array.isArray(skills)) {
+    // AI returned flat array instead of object
+    skills = {
+      technical: skills,
+      soft: [],
+      languages: [],
+      certifications: [],
+    };
+  } else if (skills && typeof skills === 'object') {
+    // Ensure all required arrays exist
+    skills = {
+      technical: Array.isArray(skills.technical) ? skills.technical : [],
+      soft: Array.isArray(skills.soft) ? skills.soft : [],
+      languages: Array.isArray(skills.languages) ? skills.languages : [],
+      certifications: Array.isArray(skills.certifications) ? skills.certifications : [],
+    };
+  }
+
+  return {
+    ...base,
+    ...data,
+    personalInfo: {
+      ...base.personalInfo,
+      ...personalInfo,
+      fullName: personalInfo.fullName || '',
+    },
+    skills,
+  };
+}

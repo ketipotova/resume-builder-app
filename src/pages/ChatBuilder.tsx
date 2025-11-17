@@ -5,7 +5,7 @@ import { ChatInterface } from '../components/chat/ChatInterface';
 import { Button } from '../components/common/Button';
 import { useResume } from '../contexts/ResumeContext';
 import { streamChatResumeBuilder } from '../lib/claude-api';
-import { createEmptyResume } from '../utils/resume-helpers';
+import { normalizeResumeData } from '../utils/resume-helpers';
 
 export function ChatBuilder() {
   const navigate = useNavigate();
@@ -64,11 +64,10 @@ export function ChatBuilder() {
 
           // Validate it's actually a resume object
           if (resumeData.personalInfo) {
-            const newResume = {
-              ...createEmptyResume(),
-              ...resumeData,
-            };
-            setResume(newResume);
+            // Normalize the data to handle AI mistakes/legacy formats
+            const normalizedResume = normalizeResumeData(resumeData);
+            console.log('Normalized resume data:', normalizedResume);
+            setResume(normalizedResume);
             setIsComplete(true);
           }
         } catch (error) {

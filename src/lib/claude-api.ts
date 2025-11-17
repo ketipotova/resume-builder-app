@@ -56,8 +56,54 @@ EXTRACTION RULES:
 - Numbers: Always preserve metrics and percentages
 - Be specific: Extract company names, job titles, exact degree names
 
+RESUME SCHEMA (MUST FOLLOW EXACTLY):
+{
+  "id": "string (use crypto.randomUUID())",
+  "createdAt": "ISO date string",
+  "updatedAt": "ISO date string",
+  "personalInfo": {
+    "fullName": "string (REQUIRED - use fullName, not name or firstName/lastName)",
+    "email": "string (REQUIRED)",
+    "phone": "string (REQUIRED)",
+    "location": "string (REQUIRED)",
+    "linkedIn": "string (optional)",
+    "portfolio": "string (optional)",
+    "github": "string (optional)"
+  },
+  "summary": "string (professional summary paragraph)",
+  "experience": [{
+    "id": "string (use crypto.randomUUID())",
+    "company": "string",
+    "position": "string",
+    "location": "string",
+    "startDate": "string (YYYY-MM format)",
+    "endDate": "string (YYYY-MM or 'Present')",
+    "description": "string",
+    "achievements": ["string array of bullet points"]
+  }],
+  "education": [{
+    "id": "string (use crypto.randomUUID())",
+    "institution": "string",
+    "degree": "string",
+    "field": "string",
+    "location": "string",
+    "graduationDate": "string (YYYY-MM)",
+    "gpa": "string (optional)",
+    "honors": "string (optional)"
+  }],
+  "skills": {
+    "technical": ["array of technical skills strings"],
+    "soft": ["array of soft skills strings"],
+    "languages": [{"name": "string", "proficiency": "string"}],
+    "certifications": ["array of certification strings"]
+  },
+  "template": "professional"
+}
+
+CRITICAL: skills MUST be an object with technical/soft/languages/certifications arrays, NOT a flat array!
+
 OUTPUT FORMAT:
-After complete information is gathered, output ONLY valid JSON matching the Resume schema. No additional text.`;
+After complete information is gathered, output ONLY valid JSON matching the Resume schema above. No additional text.`;
 
   const messages = conversationHistory.map((msg) => ({
     role: msg.role,
@@ -93,7 +139,35 @@ export async function streamChatResumeBuilder(
 
 Ask questions one section at a time, be encouraging, and extract specific details. Keep responses concise.
 
-After collecting all information, output ONLY valid JSON matching the Resume schema.`;
+RESUME SCHEMA (MUST FOLLOW EXACTLY):
+{
+  "id": "string",
+  "createdAt": "ISO date string",
+  "updatedAt": "ISO date string",
+  "personalInfo": {
+    "fullName": "string (REQUIRED - not name/firstName/lastName)",
+    "email": "string",
+    "phone": "string",
+    "location": "string",
+    "linkedIn": "optional",
+    "portfolio": "optional",
+    "github": "optional"
+  },
+  "summary": "string",
+  "experience": [{"id": "string", "company": "string", "position": "string", "location": "string", "startDate": "YYYY-MM", "endDate": "YYYY-MM or Present", "description": "string", "achievements": ["array"]}],
+  "education": [{"id": "string", "institution": "string", "degree": "string", "field": "string", "location": "string", "graduationDate": "YYYY-MM", "gpa": "optional", "honors": "optional"}],
+  "skills": {
+    "technical": ["array of strings"],
+    "soft": ["array of strings"],
+    "languages": [{"name": "string", "proficiency": "string"}],
+    "certifications": ["array of strings"]
+  },
+  "template": "professional"
+}
+
+CRITICAL: skills MUST be an object with technical/soft/languages/certifications arrays, NOT a flat array!
+
+After collecting all information, output ONLY valid JSON matching the Resume schema above.`;
 
   const messages = conversationHistory.map((msg) => ({
     role: msg.role,
@@ -168,8 +242,36 @@ RULES:
    - Use "Present" for current positions
    - Handle various date formats (Jan 2020, 01/2020, January 2020)
 
+RESUME SCHEMA (MUST FOLLOW EXACTLY):
+{
+  "id": "string",
+  "createdAt": "ISO date string",
+  "updatedAt": "ISO date string",
+  "personalInfo": {
+    "fullName": "string (REQUIRED - not name/firstName/lastName)",
+    "email": "string",
+    "phone": "string",
+    "location": "string",
+    "linkedIn": "optional",
+    "portfolio": "optional",
+    "github": "optional"
+  },
+  "summary": "string",
+  "experience": [{"id": "string", "company": "string", "position": "string", "location": "string", "startDate": "YYYY-MM", "endDate": "YYYY-MM or Present", "description": "string", "achievements": ["array"]}],
+  "education": [{"id": "string", "institution": "string", "degree": "string", "field": "string", "location": "string", "graduationDate": "YYYY-MM", "gpa": "optional", "honors": "optional"}],
+  "skills": {
+    "technical": ["array of strings"],
+    "soft": ["array of strings"],
+    "languages": [{"name": "string", "proficiency": "string"}],
+    "certifications": ["array of strings"]
+  },
+  "template": "professional"
+}
+
+CRITICAL: skills MUST be an object with technical/soft/languages/certifications arrays, NOT a flat array!
+
 OUTPUT:
-Return ONLY valid JSON matching the Resume schema. Do not include any explanatory text.
+Return ONLY valid JSON matching the Resume schema above. Do not include any explanatory text.
 
 If information is ambiguous or missing, use best judgment or leave fields empty rather than inventing data.`;
 

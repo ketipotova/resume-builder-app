@@ -7,6 +7,7 @@ import { LoadingSpinner } from '../components/common/LoadingSpinner';
 import { useResume } from '../contexts/ResumeContext';
 import { extractResumeText } from '../lib/resume-parser';
 import { parseUploadedResume } from '../lib/claude-api';
+import { normalizeResumeData } from '../utils/resume-helpers';
 
 export function UploadResume() {
   const navigate = useNavigate();
@@ -47,7 +48,11 @@ export function UploadResume() {
       // Parse with AI
       const parsedResume = await parseUploadedResume(resumeText);
 
-      setResume(parsedResume);
+      // Normalize the data to handle AI mistakes/legacy formats
+      const normalizedResume = normalizeResumeData(parsedResume);
+      console.log('Normalized uploaded resume:', normalizedResume);
+
+      setResume(normalizedResume);
       setIsComplete(true);
     } catch (err) {
       console.error('Processing error:', err);

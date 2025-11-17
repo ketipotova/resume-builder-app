@@ -189,7 +189,8 @@ export function FinalPreview() {
                     Key Competencies
                   </h3>
                   <div className="grid md:grid-cols-2 gap-4">
-                    {resume.skills?.technical && resume.skills.technical.map((skill, index) => (
+                    {resume.skills?.technical && Array.isArray(resume.skills.technical) &&
+                      resume.skills.technical.slice(0, 6).map((skill, index) => (
                       <div key={`tech-${index}`} className="flex items-start gap-2.5 p-3 rounded-lg" style={{
                         background: '#f7fafc',
                         borderLeft: '3px solid #667eea'
@@ -197,11 +198,12 @@ export function FinalPreview() {
                         <div style={{ color: '#667eea', fontWeight: 'bold', marginTop: '2px' }}>●</div>
                         <div className="flex-1">
                           <div className="font-semibold" style={{ color: '#2d3748', marginBottom: '3px' }}>{skill}</div>
-                          <div className="text-xs" style={{ color: '#718096' }}>Professional expertise</div>
+                          <div className="text-xs" style={{ color: '#718096' }}>Technical expertise</div>
                         </div>
                       </div>
                     ))}
-                    {resume.skills?.soft && resume.skills.soft.map((skill, index) => (
+                    {resume.skills?.soft && Array.isArray(resume.skills.soft) &&
+                      resume.skills.soft.slice(0, 2).map((skill, index) => (
                       <div key={`soft-${index}`} className="flex items-start gap-2.5 p-3 rounded-lg" style={{
                         background: '#f7fafc',
                         borderLeft: '3px solid #667eea'
