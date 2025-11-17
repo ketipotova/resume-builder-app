@@ -44,15 +44,29 @@ export function formatDate(date: Date | string): string {
  * Parse date string to readable format
  */
 export function parseDate(dateStr: string): string {
-  if (dateStr === 'Present') return 'Present';
+  if (!dateStr || dateStr === 'Present') return dateStr || 'Present';
+
+  // If it doesn't contain a dash, return as-is
+  if (!dateStr.includes('-')) return dateStr;
 
   const [year, month] = dateStr.split('-');
+
+  // Validate we have both year and month
+  if (!year || !month) return dateStr;
+
   const months = [
     'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
     'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
   ];
 
-  return `${months[parseInt(month) - 1]} ${year}`;
+  const monthIndex = parseInt(month) - 1;
+
+  // Validate month is in valid range
+  if (isNaN(monthIndex) || monthIndex < 0 || monthIndex > 11) {
+    return dateStr;
+  }
+
+  return `${months[monthIndex]} ${year}`;
 }
 
 /**
