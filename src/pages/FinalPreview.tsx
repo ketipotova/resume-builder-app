@@ -283,13 +283,6 @@ export function FinalPreview() {
                   </div>
                 </div>
               )}
-
-              {/* Template Info */}
-              <div className="pt-6 border-t border-gray-200">
-                <p className="text-sm text-gray-600">
-                  Template: <span className="font-semibold capitalize">{resume.template || 'professional'}</span>
-                </p>
-              </div>
             </div>
           </div>
 

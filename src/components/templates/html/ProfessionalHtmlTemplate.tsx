@@ -140,7 +140,7 @@ export default function ProfessionalHtmlTemplate({ resume }: ProfessionalHtmlTem
               gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
               gap: '15px',
             }}>
-              {resume.skills && resume.skills.technical && resume.skills.technical.map((skill, index) => (
+              {resume.skills && resume.skills.technical && resume.skills.technical.slice(0, 6).map((skill, index) => (
                 <div key={`tech-${index}`} style={{
                   display: 'flex',
                   alignItems: 'flex-start',
@@ -169,7 +169,7 @@ export default function ProfessionalHtmlTemplate({ resume }: ProfessionalHtmlTem
                   </div>
                 </div>
               ))}
-              {resume.skills && resume.skills.soft && resume.skills.soft.map((skill, index) => (
+              {resume.skills && resume.skills.soft && resume.skills.soft.slice(0, 2).map((skill, index) => (
                 <div key={`soft-${index}`} style={{
                   display: 'flex',
                   alignItems: 'flex-start',
