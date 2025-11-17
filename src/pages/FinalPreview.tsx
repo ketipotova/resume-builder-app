@@ -204,7 +204,7 @@ export function FinalPreview() {
               )}
 
               {/* Experience */}
-              {resume.experience.length > 0 && (
+              {resume.experience?.length > 0 && (
                 <div>
                   <h3 className="text-xl font-semibold mb-5 pb-2.5" style={{
                     color: '#2d3748',
@@ -255,7 +255,7 @@ export function FinalPreview() {
               )}
 
               {/* Education */}
-              {resume.education.length > 0 && (
+              {resume.education?.length > 0 && (
                 <div>
                   <h3 className="text-xl font-semibold mb-5 pb-2.5" style={{
                     color: '#2d3748',
