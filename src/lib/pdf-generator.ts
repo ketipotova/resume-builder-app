@@ -3,6 +3,8 @@ import ReactDOMServer from 'react-dom/server';
 import html2pdf from 'html2pdf.js';
 import type { Resume } from '../types/resume';
 import ProfessionalHtmlTemplate from '../components/templates/html/ProfessionalHtmlTemplate';
+import MinimalistHtmlTemplate from '../components/templates/html/MinimalistHtmlTemplate';
+import CreativeHtmlTemplate from '../components/templates/html/CreativeHtmlTemplate';
 
 /**
  * Get the appropriate template component based on template ID
@@ -11,15 +13,11 @@ function getTemplateComponent(templateId: string, resume: Resume) {
   switch (templateId) {
     case 'professional':
       return React.createElement(ProfessionalHtmlTemplate, { resume });
-    case 'modern':
-      // Will be created later
-      return React.createElement(ProfessionalHtmlTemplate, { resume });
     case 'minimalist':
-      // Will be created later
-      return React.createElement(ProfessionalHtmlTemplate, { resume });
+      return React.createElement(MinimalistHtmlTemplate, { resume });
     case 'creative':
-      // Will be created later
-      return React.createElement(ProfessionalHtmlTemplate, { resume });
+      return React.createElement(CreativeHtmlTemplate, { resume });
+    case 'modern':
     case 'executive':
       // Will be created later
       return React.createElement(ProfessionalHtmlTemplate, { resume });

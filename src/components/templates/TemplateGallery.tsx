@@ -25,9 +25,9 @@ const templates = [
   {
     id: 'creative',
     name: 'Creative',
-    description: 'Asymmetric layout with purple gradient. Perfect for designers and artists.',
-    thumbnail: 'from-purple-50 to-purple-100',
-    color: 'purple-600',
+    description: 'Two-column layout with dark blue sidebar and golden accents. Modern and professional.',
+    thumbnail: 'from-blue-50 to-amber-100',
+    color: 'blue-900',
   },
   {
     id: 'executive',
