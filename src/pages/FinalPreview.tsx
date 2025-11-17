@@ -97,43 +97,46 @@ export function FinalPreview() {
           </div>
 
           {/* Resume Preview Card */}
-          <div className="bg-white rounded-lg shadow-xl p-8 mb-8">
-            <div className="space-y-6">
-              {/* Header */}
-              <div className="border-b-2 border-primary-600 pb-4">
-                <h2 className="text-3xl font-bold text-gray-900 mb-2">
-                  {resume.personalInfo.fullName}
-                </h2>
-                <div className="text-sm text-gray-600 space-y-1">
-                  <p>{resume.personalInfo.email} • {resume.personalInfo.phone}</p>
-                  <p>{resume.personalInfo.location}</p>
-                  {resume.personalInfo.linkedIn && (
-                    <p>{resume.personalInfo.linkedIn}</p>
-                  )}
-                </div>
+          <div className="bg-white rounded-lg shadow-xl overflow-hidden mb-8">
+            {/* Header with Gradient */}
+            <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-purple-700 text-white px-12 py-10">
+              <h2 className="text-4xl font-bold mb-3 tracking-tight">
+                {resume.personalInfo.fullName}
+              </h2>
+              <div className="text-sm opacity-95 space-y-1">
+                <p>{resume.personalInfo.email} • {resume.personalInfo.phone}</p>
+                <p>{resume.personalInfo.location}</p>
+                {resume.personalInfo.linkedIn && (
+                  <p>{resume.personalInfo.linkedIn}</p>
+                )}
               </div>
+            </div>
+
+            <div className="p-10 space-y-6">
 
               {/* Summary */}
               {resume.summary && (
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">Summary</h3>
-                  <p className="text-gray-700">{resume.summary}</p>
+                  <h3 className="text-lg font-bold text-indigo-600 mb-3 pb-2 border-b-2 border-indigo-600">Professional Summary</h3>
+                  <p className="text-gray-700 leading-relaxed text-justify">{resume.summary}</p>
                 </div>
               )}
 
               {/* Experience */}
               {resume.experience.length > 0 && (
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-3">Experience</h3>
-                  <div className="space-y-4">
+                  <h3 className="text-lg font-bold text-indigo-600 mb-4 pb-2 border-b-2 border-indigo-600">Professional Experience</h3>
+                  <div className="space-y-5">
                     {resume.experience.map((exp) => (
                       <div key={exp.id}>
-                        <h4 className="font-semibold text-gray-900">{exp.position}</h4>
-                        <p className="text-sm text-gray-600">
+                        <div className="flex justify-between items-baseline mb-1">
+                          <h4 className="font-semibold text-gray-900 text-base">{exp.position}</h4>
+                          <span className="text-xs text-gray-500 italic">
+                            {exp.startDate} - {exp.endDate}
+                          </span>
+                        </div>
+                        <p className="text-sm text-indigo-600 font-medium mb-2">
                           {exp.company} • {exp.location}
-                        </p>
-                        <p className="text-xs text-gray-500 mb-2">
-                          {exp.startDate} - {exp.endDate}
                         </p>
                         {exp.achievements && exp.achievements.length > 0 && (
                           <ul className="list-disc list-inside space-y-1">
@@ -153,15 +156,17 @@ export function FinalPreview() {
               {/* Education */}
               {resume.education.length > 0 && (
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-3">Education</h3>
-                  <div className="space-y-3">
+                  <h3 className="text-lg font-bold text-indigo-600 mb-4 pb-2 border-b-2 border-indigo-600">Education</h3>
+                  <div className="space-y-4">
                     {resume.education.map((edu) => (
                       <div key={edu.id}>
-                        <h4 className="font-semibold text-gray-900">
-                          {edu.degree} in {edu.field}
-                        </h4>
-                        <p className="text-sm text-gray-600">{edu.institution}</p>
-                        <p className="text-xs text-gray-500">{edu.graduationDate}</p>
+                        <div className="flex justify-between items-baseline">
+                          <h4 className="font-semibold text-gray-900">
+                            {edu.degree} in {edu.field}
+                          </h4>
+                          <span className="text-xs text-gray-500 italic">{edu.graduationDate}</span>
+                        </div>
+                        <p className="text-sm text-indigo-600 font-medium">{edu.institution}</p>
                       </div>
                     ))}
                   </div>
@@ -171,22 +176,30 @@ export function FinalPreview() {
               {/* Skills */}
               {(resume.skills?.technical?.length > 0 || resume.skills?.soft?.length > 0) && (
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-3">Skills</h3>
-                  <div className="grid md:grid-cols-2 gap-4">
+                  <h3 className="text-lg font-bold text-indigo-600 mb-3 pb-2 border-b-2 border-indigo-600">Skills</h3>
+                  <div className="grid md:grid-cols-2 gap-6">
                     {resume.skills?.technical && resume.skills.technical.length > 0 && (
                       <div>
-                        <h4 className="font-semibold text-gray-800 mb-2">Technical</h4>
-                        <p className="text-sm text-gray-700">
-                          {resume.skills.technical.join(', ')}
-                        </p>
+                        <h4 className="font-semibold text-gray-900 mb-3">Technical Skills</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {resume.skills.technical.map((skill, index) => (
+                            <span key={index} className="bg-indigo-50 text-indigo-700 px-3 py-1.5 rounded-full text-sm font-medium">
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     )}
                     {resume.skills?.soft && resume.skills.soft.length > 0 && (
                       <div>
-                        <h4 className="font-semibold text-gray-800 mb-2">Soft Skills</h4>
-                        <p className="text-sm text-gray-700">
-                          {resume.skills.soft.join(', ')}
-                        </p>
+                        <h4 className="font-semibold text-gray-900 mb-3">Soft Skills</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {resume.skills.soft.map((skill, index) => (
+                            <span key={index} className="bg-purple-50 text-purple-700 px-3 py-1.5 rounded-full text-sm font-medium">
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     )}
                   </div>
