@@ -1,53 +1,4 @@
-import React from 'react';
-
-// Type definitions
-interface PersonalInfo {
-  fullName: string;
-  phone: string;
-  email: string;
-  location: string;
-  linkedIn?: string;
-  website?: string;
-  title?: string;
-}
-
-interface Experience {
-  id: string;
-  position: string;
-  company: string;
-  location: string;
-  startDate: string;
-  endDate: string;
-  achievements?: string[];
-}
-
-interface Education {
-  id: string;
-  degree: string;
-  field: string;
-  institution: string;
-  graduationDate: string;
-  gpa?: string;
-}
-
-interface Skills {
-  technical?: string[];
-  soft?: string[];
-}
-
-interface Resume {
-  personalInfo: PersonalInfo;
-  summary?: string;
-  experience: Experience[];
-  education: Education[];
-  skills?: Skills;
-  certifications?: Array<{
-    id: string;
-    name: string;
-    issuer: string;
-    date: string;
-  }>;
-}
+import type { Resume } from '../../../types/resume';
 
 interface ProfessionalHtmlTemplateProps {
   resume: Resume;
@@ -95,16 +46,6 @@ export default function ProfessionalHtmlTemplate({ resume }: ProfessionalHtmlTem
             {resume.personalInfo.fullName}
           </h1>
 
-          {resume.personalInfo.title && (
-            <div style={{
-              fontSize: '18px',
-              color: '#a0aec0',
-              marginBottom: '20px',
-              fontWeight: '300',
-            }}>
-              {resume.personalInfo.title}
-            </div>
-          )}
 
           <div style={{
             display: 'flex',
@@ -137,10 +78,10 @@ export default function ProfessionalHtmlTemplate({ resume }: ProfessionalHtmlTem
                 <span style={{ wordBreak: 'break-all' }}>{resume.personalInfo.linkedIn}</span>
               </div>
             )}
-            {resume.personalInfo.website && (
+            {resume.personalInfo.portfolio && (
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <span style={{ color: '#667eea', fontSize: '12px', fontWeight: 'bold' }}>●</span>
-                <span style={{ wordBreak: 'break-all' }}>{resume.personalInfo.website}</span>
+                <span style={{ wordBreak: 'break-all' }}>{resume.personalInfo.portfolio}</span>
               </div>
             )}
           </div>
@@ -407,7 +348,7 @@ export default function ProfessionalHtmlTemplate({ resume }: ProfessionalHtmlTem
         )}
 
         {/* Certifications */}
-        {resume.certifications && resume.certifications.length > 0 && (
+        {resume.skills?.certifications && resume.skills.certifications.length > 0 && (
           <div style={{ marginBottom: '35px' }}>
             <h2 style={{
               fontSize: '20px',
@@ -422,128 +363,39 @@ export default function ProfessionalHtmlTemplate({ resume }: ProfessionalHtmlTem
             }}>
               CERTIFICATIONS
             </h2>
-            {resume.certifications.map((cert, index) => (
-              <div key={cert.id} style={{
-                marginBottom: index < resume.certifications.length - 1 ? '15px' : '0',
-                display: 'flex',
-                alignItems: 'flex-start',
-                gap: '10px',
-              }}>
-                <span style={{
-                  color: '#667eea',
-                  fontWeight: 'bold',
-                  marginTop: '2px',
-                  fontSize: '14px',
-                  flexShrink: 0,
-                }}>▸</span>
-                <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '15px' }}>
+              {resume.skills.certifications.map((cert, index) => (
+                <div key={index} style={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '10px',
+                  padding: '12px',
+                  backgroundColor: '#f7fafc',
+                  borderRadius: '8px',
+                  borderLeft: '3px solid #667eea',
+                }}>
+                  <div style={{
+                    color: '#667eea',
+                    fontWeight: 'bold',
+                    marginTop: '2px',
+                    fontSize: '14px',
+                    flexShrink: 0,
+                  }}>▸</div>
                   <div style={{
                     fontWeight: '600',
                     color: '#2d3748',
                     fontSize: '15px',
                     wordBreak: 'break-word',
+                    flex: 1,
                   }}>
-                    {cert.name}
-                  </div>
-                  <div style={{
-                    color: '#718096',
-                    fontSize: '14px',
-                    wordBreak: 'break-word',
-                  }}>
-                    {cert.issuer} | {cert.date}
+                    {cert}
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         )}
       </div>
     </div>
   );
 }
-
-// Demo with sample data
-const sampleResume: Resume = {
-  personalInfo: {
-    fullName: "John Anderson",
-    title: "Senior Software Engineer",
-    phone: "+1 (555) 123-4567",
-    email: "john.anderson@email.com",
-    location: "San Francisco, CA",
-    linkedIn: "linkedin.com/in/johnanderson",
-    website: "johnanderson.dev"
-  },
-  summary: "Results-driven software engineer with 8+ years of experience designing and implementing scalable web applications. Proven expertise in full-stack development, cloud architecture, and agile methodologies. Passionate about creating efficient, user-centric solutions that drive business growth and enhance user experience.",
-  skills: {
-    technical: [
-      "React & Next.js",
-      "Node.js & Express",
-      "TypeScript & JavaScript",
-      "AWS & Cloud Architecture",
-      "PostgreSQL & MongoDB",
-      "Docker & Kubernetes"
-    ],
-    soft: [
-      "Team Leadership",
-      "Agile & Scrum",
-      "Problem Solving",
-      "Communication",
-      "Project Management",
-      "Mentoring"
-    ]
-  },
-  experience: [
-    {
-      id: "1",
-      position: "Senior Software Engineer",
-      company: "TechCorp Solutions",
-      location: "San Francisco, CA",
-      startDate: "Jan 2021",
-      endDate: "Present",
-      achievements: [
-        "Led development of microservices architecture serving 2M+ daily active users, improving system reliability by 45%",
-        "Architected and implemented CI/CD pipeline reducing deployment time from 2 hours to 15 minutes",
-        "Mentored team of 5 junior developers, establishing code review practices and technical standards",
-        "Reduced API response time by 60% through database optimization and caching strategies"
-      ]
-    },
-    {
-      id: "2",
-      position: "Software Engineer",
-      company: "Digital Innovations Inc",
-      location: "Palo Alto, CA",
-      startDate: "Mar 2018",
-      endDate: "Dec 2020",
-      achievements: [
-        "Developed customer-facing dashboard using React and Node.js, increasing user engagement by 35%",
-        "Implemented automated testing framework achieving 85% code coverage",
-        "Collaborated with product team to design and launch 3 major features on schedule",
-        "Optimized application performance resulting in 40% faster page load times"
-      ]
-    }
-  ],
-  education: [
-    {
-      id: "1",
-      degree: "Bachelor of Science",
-      field: "Computer Science",
-      institution: "Stanford University",
-      graduationDate: "2018",
-      gpa: "3.8"
-    }
-  ],
-  certifications: [
-    {
-      id: "1",
-      name: "AWS Certified Solutions Architect",
-      issuer: "Amazon Web Services",
-      date: "2023"
-    },
-    {
-      id: "2",
-      name: "Professional Scrum Master I",
-      issuer: "Scrum.org",
-      date: "2022"
-    }
-  ]
-};
