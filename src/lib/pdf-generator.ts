@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import html2pdf from 'html2pdf.js';
 import type { Resume } from '../types/resume';
-import { ProfessionalHtmlTemplate } from '../components/templates/html/ProfessionalHtmlTemplate';
+import ProfessionalHtmlTemplate from '../components/templates/html/ProfessionalHtmlTemplate';
 
 /**
  * Get the appropriate template component based on template ID
