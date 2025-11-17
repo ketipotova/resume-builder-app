@@ -135,13 +135,15 @@ export function FinalPreview() {
                         <p className="text-xs text-gray-500 mb-2">
                           {exp.startDate} - {exp.endDate}
                         </p>
-                        <ul className="list-disc list-inside space-y-1">
-                          {exp.achievements.map((achievement, index) => (
-                            <li key={index} className="text-sm text-gray-700">
-                              {achievement}
-                            </li>
-                          ))}
-                        </ul>
+                        {exp.achievements && exp.achievements.length > 0 && (
+                          <ul className="list-disc list-inside space-y-1">
+                            {exp.achievements.map((achievement, index) => (
+                              <li key={index} className="text-sm text-gray-700">
+                                {achievement}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
                       </div>
                     ))}
                   </div>
