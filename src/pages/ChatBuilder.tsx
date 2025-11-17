@@ -53,12 +53,17 @@ export function ChatBuilder() {
       );
 
       // Check if response contains JSON (indicating completion)
-      if (fullResponse.includes('{') && fullResponse.includes('}')) {
+      // Look for JSON code blocks or JSON objects with resume structure
+      const jsonCodeBlockMatch = fullResponse.match(/```(?:json)?\s*(\{[\s\S]*?\})\s*```/);
+      const jsonMatch = jsonCodeBlockMatch || fullResponse.match(/(\{[\s\S]*"personalInfo"[\s\S]*\})/);
+
+      if (jsonMatch) {
         try {
-          // Extract JSON
-          const jsonMatch = fullResponse.match(/\{[\s\S]*\}/);
-          if (jsonMatch) {
-            const resumeData = JSON.parse(jsonMatch[0]);
+          const jsonStr = jsonCodeBlockMatch ? jsonCodeBlockMatch[1] : jsonMatch[0];
+          const resumeData = JSON.parse(jsonStr);
+
+          // Validate it's actually a resume object
+          if (resumeData.personalInfo) {
             const newResume = {
               ...createEmptyResume(),
               ...resumeData,
@@ -68,6 +73,7 @@ export function ChatBuilder() {
           }
         } catch (error) {
           console.error('Failed to parse resume JSON:', error);
+          // Silently fail - it's just not ready yet
         }
       }
     } catch (error) {
