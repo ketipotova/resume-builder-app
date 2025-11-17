@@ -40,12 +40,9 @@ export function FinalPreview() {
   }
 
   return (
-    <div className="min-h-screen" style={{
-      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-      padding: '20px'
-    }}>
+    <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 rounded-t-lg">
+      <div className="bg-white border-b border-gray-200">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <button
@@ -91,10 +88,10 @@ export function FinalPreview() {
       <div className="container mx-auto px-4 py-12">
         <div className="max-width: '210mm'">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-white mb-2">
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">
               Your Resume is Ready!
             </h1>
-            <p className="text-white/90">
+            <p className="text-gray-600">
               Review your resume below and download when ready
             </p>
           </div>
@@ -298,30 +295,30 @@ export function FinalPreview() {
               onClick={handleDownload}
               size="lg"
               isLoading={isDownloading}
-              className="w-full md:w-auto bg-white text-purple-600 hover:bg-purple-50"
+              className="w-full md:w-auto"
             >
               <Download className="w-5 h-5 mr-2" />
               Download Resume PDF
             </Button>
 
-            <div className="text-center text-sm text-white/90 space-y-2">
+            <div className="text-center text-sm text-gray-600 space-y-2">
               <p>Your resume is ready to download!</p>
               <div className="flex gap-4 justify-center">
                 <button
                   onClick={() => navigate('/templates')}
-                  className="text-white hover:underline font-medium"
+                  className="text-primary-600 hover:underline font-medium"
                 >
                   Change Template
                 </button>
                 <button
                   onClick={() => navigate('/enhance')}
-                  className="text-white hover:underline font-medium"
+                  className="text-primary-600 hover:underline font-medium"
                 >
                   Enhance Resume
                 </button>
                 <button
                   onClick={() => navigate('/')}
-                  className="text-white hover:underline font-medium"
+                  className="text-primary-600 hover:underline font-medium"
                 >
                   Start New Resume
                 </button>
