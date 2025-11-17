@@ -188,7 +188,7 @@ export function ExecutiveTemplate({ resume }: ExecutiveTemplateProps) {
                     <Text style={styles.location}>{exp.location}</Text>
                   </View>
                 </View>
-                {exp.achievements.map((achievement, achIndex) => (
+                {exp.achievements && exp.achievements.map((achievement, achIndex) => (
                   <Text
                     key={achIndex}
                     style={achIndex === 0 ? styles.achievementHighlight : styles.bulletPoint}

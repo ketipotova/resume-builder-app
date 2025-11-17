@@ -144,7 +144,7 @@ export function MinimalistTemplate({ resume }: MinimalistTemplateProps) {
                   <Text style={styles.company}>
                     {exp.company}, {exp.location}
                   </Text>
-                  {exp.achievements.map((achievement, achIndex) => (
+                  {exp.achievements && exp.achievements.map((achievement, achIndex) => (
                     <Text key={achIndex} style={styles.bulletPoint}>
                       {achievement}
                     </Text>

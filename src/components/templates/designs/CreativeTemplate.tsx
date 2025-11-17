@@ -221,7 +221,7 @@ export function CreativeTemplate({ resume }: CreativeTemplateProps) {
                     <Text style={styles.date}>
                       {parseDate(exp.startDate)} - {exp.endDate === 'Present' ? 'Present' : parseDate(exp.endDate)}
                     </Text>
-                    {exp.achievements.map((achievement, index) => (
+                    {exp.achievements && exp.achievements.map((achievement, index) => (
                       <Text key={index} style={styles.bulletPoint}>
                         • {achievement}
                       </Text>
