@@ -108,7 +108,7 @@ export async function downloadResumePDF(resume: Resume, filename?: string): Prom
     link.href = url;
 
     // Generate filename
-    const sanitizedName = resume.personalInfo.fullName
+    const sanitizedName = (resume.personalInfo?.fullName || 'resume')
       .replace(/[^a-z0-9]/gi, '_')
       .toLowerCase();
     link.download = filename || `${sanitizedName}_resume.pdf`;

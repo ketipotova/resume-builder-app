@@ -42,10 +42,12 @@ export function FinalPreview() {
   // Diagnostic logging
   console.log('=== RESUME DATA DEBUG ===');
   console.log('Full Name:', resume.personalInfo?.fullName);
-  console.log('Personal Info:', resume.personalInfo);
+  console.log('Personal Info FULL:', JSON.stringify(resume.personalInfo, null, 2));
+  console.log('Skills Type:', typeof resume.skills, 'Is Array?', Array.isArray(resume.skills));
   console.log('Skills Object:', resume.skills);
   console.log('Technical Skills:', resume.skills?.technical);
   console.log('Soft Skills:', resume.skills?.soft);
+  console.log('Full Resume:', JSON.stringify(resume, null, 2));
   console.log('========================');
 
   return (
