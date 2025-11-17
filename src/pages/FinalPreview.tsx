@@ -120,18 +120,24 @@ export function FinalPreview() {
                   {resume.personalInfo.fullName}
                 </h2>
                 <div className="text-sm flex flex-wrap gap-6" style={{ marginTop: '20px' }}>
-                  <div className="flex items-center gap-2">
-                    <span style={{ color: '#667eea', fontSize: '8px' }}>●</span>
-                    {resume.personalInfo.phone}
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span style={{ color: '#667eea', fontSize: '8px' }}>●</span>
-                    {resume.personalInfo.email}
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span style={{ color: '#667eea', fontSize: '8px' }}>●</span>
-                    {resume.personalInfo.location}
-                  </div>
+                  {resume.personalInfo.phone && (
+                    <div className="flex items-center gap-2">
+                      <span style={{ color: '#667eea', fontSize: '8px' }}>●</span>
+                      {resume.personalInfo.phone}
+                    </div>
+                  )}
+                  {resume.personalInfo.email && (
+                    <div className="flex items-center gap-2">
+                      <span style={{ color: '#667eea', fontSize: '8px' }}>●</span>
+                      {resume.personalInfo.email}
+                    </div>
+                  )}
+                  {resume.personalInfo.location && (
+                    <div className="flex items-center gap-2">
+                      <span style={{ color: '#667eea', fontSize: '8px' }}>●</span>
+                      {resume.personalInfo.location}
+                    </div>
+                  )}
                   {resume.personalInfo.linkedIn && (
                     <div className="flex items-center gap-2">
                       <span style={{ color: '#667eea', fontSize: '8px' }}>●</span>
@@ -266,10 +272,11 @@ export function FinalPreview() {
                     {resume.education.map((edu) => (
                       <div key={edu.id}>
                         <div className="font-semibold text-base" style={{ color: '#2d3748' }}>
-                          {edu.degree} in {edu.field}
+                          {edu.degree}{edu.field && ` in ${edu.field}`}
                         </div>
                         <div className="text-sm mt-1.5" style={{ color: '#718096' }}>
                           {edu.institution} | {edu.graduationDate}
+                          {edu.gpa && ` | GPA: ${edu.gpa}`}
                         </div>
                       </div>
                     ))}
