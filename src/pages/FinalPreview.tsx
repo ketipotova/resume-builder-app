@@ -169,11 +169,11 @@ export function FinalPreview() {
               )}
 
               {/* Skills */}
-              {(resume.skills.technical.length > 0 || resume.skills.soft.length > 0) && (
+              {(resume.skills?.technical?.length > 0 || resume.skills?.soft?.length > 0) && (
                 <div>
                   <h3 className="text-lg font-bold text-gray-900 mb-3">Skills</h3>
                   <div className="grid md:grid-cols-2 gap-4">
-                    {resume.skills.technical.length > 0 && (
+                    {resume.skills?.technical && resume.skills.technical.length > 0 && (
                       <div>
                         <h4 className="font-semibold text-gray-800 mb-2">Technical</h4>
                         <p className="text-sm text-gray-700">
@@ -181,7 +181,7 @@ export function FinalPreview() {
                         </p>
                       </div>
                     )}
-                    {resume.skills.soft.length > 0 && (
+                    {resume.skills?.soft && resume.skills.soft.length > 0 && (
                       <div>
                         <h4 className="font-semibold text-gray-800 mb-2">Soft Skills</h4>
                         <p className="text-sm text-gray-700">
