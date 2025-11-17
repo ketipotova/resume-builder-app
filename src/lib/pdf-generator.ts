@@ -1,11 +1,8 @@
 import React from 'react';
-import { pdf } from '@react-pdf/renderer';
+import ReactDOMServer from 'react-dom/server';
+import html2pdf from 'html2pdf.js';
 import type { Resume } from '../types/resume';
-import { ProfessionalTemplate } from '../components/templates/designs/ProfessionalTemplate';
-import { ModernTemplate } from '../components/templates/designs/ModernTemplate';
-import { MinimalistTemplate } from '../components/templates/designs/MinimalistTemplate';
-import { CreativeTemplate } from '../components/templates/designs/CreativeTemplate';
-import { ExecutiveTemplate } from '../components/templates/designs/ExecutiveTemplate';
+import { ProfessionalHtmlTemplate } from '../components/templates/html/ProfessionalHtmlTemplate';
 
 /**
  * Get the appropriate template component based on template ID
@@ -13,29 +10,75 @@ import { ExecutiveTemplate } from '../components/templates/designs/ExecutiveTemp
 function getTemplateComponent(templateId: string, resume: Resume) {
   switch (templateId) {
     case 'professional':
-      return React.createElement(ProfessionalTemplate, { resume });
+      return React.createElement(ProfessionalHtmlTemplate, { resume });
     case 'modern':
-      return React.createElement(ModernTemplate, { resume });
+      // Will be created later
+      return React.createElement(ProfessionalHtmlTemplate, { resume });
     case 'minimalist':
-      return React.createElement(MinimalistTemplate, { resume });
+      // Will be created later
+      return React.createElement(ProfessionalHtmlTemplate, { resume });
     case 'creative':
-      return React.createElement(CreativeTemplate, { resume });
+      // Will be created later
+      return React.createElement(ProfessionalHtmlTemplate, { resume });
     case 'executive':
-      return React.createElement(ExecutiveTemplate, { resume });
+      // Will be created later
+      return React.createElement(ProfessionalHtmlTemplate, { resume });
     default:
-      return React.createElement(ProfessionalTemplate, { resume });
+      return React.createElement(ProfessionalHtmlTemplate, { resume });
   }
 }
 
 /**
- * Generate PDF blob from resume data
+ * Convert React component to HTML string
+ */
+function renderToHTML(component: React.ReactElement): string {
+  return ReactDOMServer.renderToStaticMarkup(component);
+}
+
+/**
+ * Generate PDF blob from resume data using html2pdf.js
  */
 export async function generateResumePDF(resume: Resume): Promise<Blob> {
   const templateId = resume.template || 'professional';
-  const template = getTemplateComponent(templateId, resume);
+  const component = getTemplateComponent(templateId, resume);
+  const htmlString = renderToHTML(component);
 
-  const blob = await pdf(template).toBlob();
-  return blob;
+  // Create a temporary container
+  const container = document.createElement('div');
+  container.innerHTML = htmlString;
+  container.style.position = 'absolute';
+  container.style.left = '-9999px';
+  document.body.appendChild(container);
+
+  try {
+    // Configure html2pdf options
+    const opt = {
+      margin: 0,
+      filename: 'resume.pdf',
+      image: { type: 'jpeg' as const, quality: 0.98 },
+      html2canvas: {
+        scale: 2,
+        useCORS: true,
+        letterRendering: true,
+      },
+      jsPDF: {
+        unit: 'mm' as const,
+        format: 'a4' as const,
+        orientation: 'portrait' as const
+      },
+    };
+
+    // Generate PDF
+    const pdfBlob = await html2pdf()
+      .set(opt)
+      .from(container.firstChild as HTMLElement)
+      .outputPdf('blob');
+
+    return pdfBlob;
+  } finally {
+    // Cleanup
+    document.body.removeChild(container);
+  }
 }
 
 /**
