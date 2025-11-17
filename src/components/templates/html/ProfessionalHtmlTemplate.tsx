@@ -11,131 +11,213 @@ export function ProfessionalHtmlTemplate({ resume }: ProfessionalHtmlTemplatePro
       minHeight: '297mm',
       margin: '0 auto',
       backgroundColor: '#ffffff',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-      fontSize: '11pt',
-      lineHeight: '1.6',
-      color: '#2c3e50',
+      fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif',
+      color: '#4a5568',
       padding: 0,
     }}>
-      {/* Header with Gradient Background */}
+      {/* Header with Dark Gradient */}
       <div style={{
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        background: 'linear-gradient(135deg, #2d3748 0%, #1a202c 100%)',
         padding: '40px 50px',
         color: '#ffffff',
-        marginBottom: '0',
+        position: 'relative',
+        overflow: 'hidden',
       }}>
-        <h1 style={{
-          fontSize: '36pt',
-          fontWeight: '700',
-          margin: '0 0 12px 0',
-          letterSpacing: '-0.5px',
-        }}>
-          {resume.personalInfo.fullName}
-        </h1>
-        <div style={{
-          fontSize: '11pt',
-          opacity: '0.95',
-          lineHeight: '1.8',
-        }}>
-          <div style={{ marginBottom: '4px' }}>
-            {resume.personalInfo.email} • {resume.personalInfo.phone}
+        <div style={{ position: 'relative', zIndex: 1 }}>
+          <h1 style={{
+            fontSize: '36px',
+            fontWeight: '400',
+            margin: '0 0 10px 0',
+            letterSpacing: '1px',
+          }}>
+            {resume.personalInfo.fullName}
+          </h1>
+          <div style={{
+            fontSize: '14px',
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '25px',
+            marginTop: '20px',
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ color: '#667eea', fontSize: '8px' }}>●</span>
+              {resume.personalInfo.phone}
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ color: '#667eea', fontSize: '8px' }}>●</span>
+              {resume.personalInfo.email}
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ color: '#667eea', fontSize: '8px' }}>●</span>
+              {resume.personalInfo.location}
+            </div>
+            {resume.personalInfo.linkedIn && (
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span style={{ color: '#667eea', fontSize: '8px' }}>●</span>
+                {resume.personalInfo.linkedIn}
+              </div>
+            )}
           </div>
-          <div style={{ marginBottom: '4px' }}>
-            {resume.personalInfo.location}
-          </div>
-          {resume.personalInfo.linkedIn && (
-            <div>{resume.personalInfo.linkedIn}</div>
-          )}
         </div>
       </div>
 
       {/* Main Content */}
-      <div style={{ padding: '40px 50px' }}>
+      <div style={{ padding: '50px' }}>
         {/* Professional Summary */}
         {resume.summary && (
-          <div style={{ marginBottom: '32px' }}>
+          <div style={{ marginBottom: '35px' }}>
             <h2 style={{
-              fontSize: '18pt',
-              fontWeight: '700',
-              color: '#667eea',
-              marginBottom: '12px',
-              paddingBottom: '8px',
-              borderBottom: '2px solid #667eea',
+              fontSize: '20px',
+              color: '#2d3748',
+              marginBottom: '20px',
+              paddingBottom: '10px',
+              borderBottom: '3px solid #667eea',
+              textTransform: 'uppercase',
+              letterSpacing: '2px',
+              fontWeight: '600',
             }}>
               Professional Summary
             </h2>
             <p style={{
-              margin: '0',
-              textAlign: 'justify',
-              lineHeight: '1.7',
+              lineHeight: '1.8',
+              fontSize: '15px',
             }}>
               {resume.summary}
             </p>
           </div>
         )}
 
+        {/* Skills */}
+        {(resume.skills?.technical?.length > 0 || resume.skills?.soft?.length > 0) && (
+          <div style={{ marginBottom: '35px' }}>
+            <h2 style={{
+              fontSize: '20px',
+              color: '#2d3748',
+              marginBottom: '20px',
+              paddingBottom: '10px',
+              borderBottom: '3px solid #667eea',
+              textTransform: 'uppercase',
+              letterSpacing: '2px',
+              fontWeight: '600',
+            }}>
+              Key Competencies
+            </h2>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: '15px',
+            }}>
+              {resume.skills?.technical && resume.skills.technical.map((skill, index) => (
+                <div key={`tech-${index}`} style={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '10px',
+                  padding: '12px',
+                  background: '#f7fafc',
+                  borderRadius: '8px',
+                  borderLeft: '3px solid #667eea',
+                }}>
+                  <div style={{ color: '#667eea', fontWeight: 'bold', marginTop: '2px' }}>●</div>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontWeight: '600', color: '#2d3748', marginBottom: '3px' }}>{skill}</div>
+                  </div>
+                </div>
+              ))}
+              {resume.skills?.soft && resume.skills.soft.map((skill, index) => (
+                <div key={`soft-${index}`} style={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '10px',
+                  padding: '12px',
+                  background: '#f7fafc',
+                  borderRadius: '8px',
+                  borderLeft: '3px solid #667eea',
+                }}>
+                  <div style={{ color: '#667eea', fontWeight: 'bold', marginTop: '2px' }}>●</div>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontWeight: '600', color: '#2d3748', marginBottom: '3px' }}>{skill}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Experience */}
         {resume.experience.length > 0 && (
-          <div style={{ marginBottom: '32px' }}>
+          <div style={{ marginBottom: '35px' }}>
             <h2 style={{
-              fontSize: '18pt',
-              fontWeight: '700',
-              color: '#667eea',
-              marginBottom: '16px',
-              paddingBottom: '8px',
-              borderBottom: '2px solid #667eea',
+              fontSize: '20px',
+              color: '#2d3748',
+              marginBottom: '20px',
+              paddingBottom: '10px',
+              borderBottom: '3px solid #667eea',
+              textTransform: 'uppercase',
+              letterSpacing: '2px',
+              fontWeight: '600',
             }}>
               Professional Experience
             </h2>
             {resume.experience.map((exp, index) => (
-              <div key={exp.id} style={{
-                marginBottom: index < resume.experience.length - 1 ? '24px' : '0',
-              }}>
+              <div key={exp.id} style={{ marginBottom: index < resume.experience.length - 1 ? '30px' : '0' }}>
                 <div style={{
                   display: 'flex',
                   justifyContent: 'space-between',
-                  alignItems: 'baseline',
-                  marginBottom: '6px',
+                  alignItems: 'flex-start',
+                  marginBottom: '12px',
                 }}>
-                  <h3 style={{
-                    fontSize: '13pt',
-                    fontWeight: '600',
-                    color: '#2c3e50',
-                    margin: '0',
-                  }}>
-                    {exp.position}
-                  </h3>
-                  <span style={{
-                    fontSize: '10pt',
-                    color: '#7f8c8d',
-                    fontStyle: 'italic',
+                  <div>
+                    <div style={{
+                      fontSize: '18px',
+                      color: '#2d3748',
+                      fontWeight: '600',
+                    }}>
+                      {exp.position}
+                    </div>
+                    <div style={{
+                      color: '#667eea',
+                      fontSize: '16px',
+                      marginTop: '3px',
+                    }}>
+                      {exp.company} | {exp.location}
+                    </div>
+                  </div>
+                  <div style={{
+                    background: '#edf2f7',
+                    padding: '6px 12px',
+                    borderRadius: '6px',
+                    fontSize: '13px',
+                    color: '#4a5568',
+                    whiteSpace: 'nowrap',
                   }}>
                     {exp.startDate} - {exp.endDate}
-                  </span>
-                </div>
-                <div style={{
-                  fontSize: '11pt',
-                  color: '#667eea',
-                  fontWeight: '500',
-                  marginBottom: '8px',
-                }}>
-                  {exp.company} • {exp.location}
+                  </div>
                 </div>
                 {exp.achievements && exp.achievements.length > 0 && (
-                  <ul style={{
-                    margin: '8px 0 0 20px',
-                    padding: '0',
-                    listStyleType: 'disc',
-                  }}>
-                    {exp.achievements.map((achievement, idx) => (
-                      <li key={idx} style={{
-                        marginBottom: '6px',
-                        lineHeight: '1.6',
-                      }}>
-                        {achievement}
-                      </li>
-                    ))}
-                  </ul>
+                  <div style={{ marginTop: '15px' }}>
+                    <ul style={{
+                      listStyle: 'none',
+                      paddingLeft: '0',
+                    }}>
+                      {exp.achievements.map((achievement, idx) => (
+                        <li key={idx} style={{
+                          paddingLeft: '25px',
+                          position: 'relative',
+                          marginBottom: '8px',
+                          lineHeight: '1.6',
+                          fontSize: '14px',
+                        }}>
+                          <span style={{
+                            position: 'absolute',
+                            left: '8px',
+                            color: '#667eea',
+                            fontWeight: 'bold',
+                          }}>▸</span>
+                          {achievement}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 )}
               </div>
             ))}
@@ -144,133 +226,37 @@ export function ProfessionalHtmlTemplate({ resume }: ProfessionalHtmlTemplatePro
 
         {/* Education */}
         {resume.education.length > 0 && (
-          <div style={{ marginBottom: '32px' }}>
+          <div style={{ marginBottom: '35px' }}>
             <h2 style={{
-              fontSize: '18pt',
-              fontWeight: '700',
-              color: '#667eea',
-              marginBottom: '16px',
-              paddingBottom: '8px',
-              borderBottom: '2px solid #667eea',
+              fontSize: '20px',
+              color: '#2d3748',
+              marginBottom: '20px',
+              paddingBottom: '10px',
+              borderBottom: '3px solid #667eea',
+              textTransform: 'uppercase',
+              letterSpacing: '2px',
+              fontWeight: '600',
             }}>
               Education
             </h2>
             {resume.education.map((edu, index) => (
-              <div key={edu.id} style={{
-                marginBottom: index < resume.education.length - 1 ? '16px' : '0',
-              }}>
+              <div key={edu.id} style={{ marginBottom: index < resume.education.length - 1 ? '20px' : '0' }}>
                 <div style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'baseline',
+                  fontWeight: '600',
+                  color: '#2d3748',
+                  fontSize: '16px',
                 }}>
-                  <h3 style={{
-                    fontSize: '12pt',
-                    fontWeight: '600',
-                    color: '#2c3e50',
-                    margin: '0 0 4px 0',
-                  }}>
-                    {edu.degree} in {edu.field}
-                  </h3>
-                  <span style={{
-                    fontSize: '10pt',
-                    color: '#7f8c8d',
-                    fontStyle: 'italic',
-                  }}>
-                    {edu.graduationDate}
-                  </span>
+                  {edu.degree} in {edu.field}
                 </div>
                 <div style={{
-                  fontSize: '11pt',
-                  color: '#667eea',
-                  fontWeight: '500',
+                  color: '#718096',
+                  fontSize: '14px',
+                  marginTop: '5px',
                 }}>
-                  {edu.institution}
+                  {edu.institution} | {edu.graduationDate}
                 </div>
               </div>
             ))}
-          </div>
-        )}
-
-        {/* Skills */}
-        {(resume.skills.technical.length > 0 || resume.skills.soft.length > 0) && (
-          <div style={{ marginBottom: '0' }}>
-            <h2 style={{
-              fontSize: '18pt',
-              fontWeight: '700',
-              color: '#667eea',
-              marginBottom: '16px',
-              paddingBottom: '8px',
-              borderBottom: '2px solid #667eea',
-            }}>
-              Skills
-            </h2>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: resume.skills.technical.length > 0 && resume.skills.soft.length > 0 ? '1fr 1fr' : '1fr',
-              gap: '20px',
-            }}>
-              {resume.skills.technical.length > 0 && (
-                <div>
-                  <h3 style={{
-                    fontSize: '12pt',
-                    fontWeight: '600',
-                    color: '#2c3e50',
-                    marginBottom: '8px',
-                  }}>
-                    Technical Skills
-                  </h3>
-                  <div style={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    gap: '8px',
-                  }}>
-                    {resume.skills.technical.map((skill, index) => (
-                      <span key={index} style={{
-                        backgroundColor: '#f0f4ff',
-                        color: '#667eea',
-                        padding: '4px 12px',
-                        borderRadius: '12px',
-                        fontSize: '10pt',
-                        fontWeight: '500',
-                      }}>
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-              {resume.skills.soft.length > 0 && (
-                <div>
-                  <h3 style={{
-                    fontSize: '12pt',
-                    fontWeight: '600',
-                    color: '#2c3e50',
-                    marginBottom: '8px',
-                  }}>
-                    Soft Skills
-                  </h3>
-                  <div style={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    gap: '8px',
-                  }}>
-                    {resume.skills.soft.map((skill, index) => (
-                      <span key={index} style={{
-                        backgroundColor: '#f9f0ff',
-                        color: '#764ba2',
-                        padding: '4px 12px',
-                        borderRadius: '12px',
-                        fontSize: '10pt',
-                        fontWeight: '500',
-                      }}>
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
           </div>
         )}
       </div>
