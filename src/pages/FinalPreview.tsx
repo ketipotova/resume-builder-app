@@ -86,7 +86,7 @@ export function FinalPreview() {
 
       {/* Content */}
       <div className="container mx-auto px-4 py-12">
-        <div className="max-width: '210mm'">
+        <div style={{ maxWidth: '210mm', margin: '0 auto' }}>
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
               Your Resume is Ready!
