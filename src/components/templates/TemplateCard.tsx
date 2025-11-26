@@ -1,4 +1,5 @@
 import { Check } from 'lucide-react';
+import { TemplatePreview } from './TemplatePreview';
 
 interface TemplateCardProps {
   id: string;
@@ -33,14 +34,8 @@ export function TemplateCard({
       )}
 
       {/* Template Preview */}
-      <div className="aspect-[8.5/11] bg-gray-100 rounded-lg mb-4 overflow-hidden">
-        <div className={`w-full h-full flex items-center justify-center bg-gradient-to-br ${thumbnail}`}>
-          <div className="text-center">
-            <div className={`w-16 h-16 mx-auto mb-2 rounded-full bg-${color} bg-opacity-20`} />
-            <div className={`h-2 w-24 mx-auto mb-2 bg-${color} bg-opacity-30 rounded`} />
-            <div className={`h-2 w-32 mx-auto bg-${color} bg-opacity-20 rounded`} />
-          </div>
-        </div>
+      <div className="aspect-[8.5/11] bg-gray-100 rounded-lg mb-4 overflow-hidden border border-gray-200">
+        <TemplatePreview templateId={id} />
       </div>
 
       {/* Template Info */}
