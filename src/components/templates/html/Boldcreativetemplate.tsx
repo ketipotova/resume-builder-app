@@ -20,22 +20,6 @@ const theme = {
 };
 
 // --- Components ---
-const Badge = ({ text }: { text: string }) => (
-  <span style={{
-    display: 'inline-block',
-    padding: '8px 18px',
-    backgroundColor: theme.colors.primary,
-    color: '#fff',
-    fontSize: '11px',
-    fontWeight: '600',
-    letterSpacing: '1px',
-    textTransform: 'uppercase',
-    borderRadius: '2px',
-  }}>
-    {text}
-  </span>
-);
-
 const SectionHeader = ({ title, number }: { title: string, number: string }) => (
   <div style={{
     display: 'flex',
