@@ -15,7 +15,6 @@ export function TemplateCard({
   id,
   name,
   description,
-  thumbnail,
   color,
   isSelected = false,
   onSelect,
