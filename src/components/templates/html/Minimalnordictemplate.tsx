@@ -1,4 +1,3 @@
-import React from 'react';
 import type { Resume } from '../../../types/resume';
 
 // --- Minimal Nordic Theme: Calm & Refined ---
@@ -85,18 +84,6 @@ export default function MinimalNordicTemplate({ resume }: MinimalNordicTemplateP
         }}>
           {resume.personalInfo?.fullName || 'Your Name'}
         </h1>
-        
-        {resume.personalInfo?.jobTitle && (
-          <div style={{ 
-            fontSize: '16px', 
-            fontWeight: '300',
-            color: theme.colors.textSecondary,
-            marginBottom: '24px',
-            letterSpacing: '0.5px',
-          }}>
-            {resume.personalInfo.jobTitle}
-          </div>
-        )}
 
         {/* Contact - Single Line */}
         <div style={{
@@ -281,31 +268,31 @@ export default function MinimalNordicTemplate({ resume }: MinimalNordicTemplateP
         )}
 
         {/* Projects */}
-        {hasArray(resume.projects) && (
+        {resume.projects && hasArray(resume.projects) && (
           <section className="no-break">
             <SectionTitle title="Projects" />
             {resume.projects.map((proj, index) => (
               <div key={index} style={{ marginBottom: '20px' }}>
-                <div style={{ 
+                <div style={{
                   fontFamily: theme.fonts.heading,
-                  fontSize: '14px', 
-                  fontWeight: '400', 
+                  fontSize: '14px',
+                  fontWeight: '400',
                   color: theme.colors.text,
                   marginBottom: '4px',
                 }}>
                   {proj.name}
-                  {proj.url && (
-                    <a href={proj.url} style={{ 
-                      marginLeft: '10px', 
+                  {proj.link && (
+                    <a href={proj.link} style={{
+                      marginLeft: '10px',
                       fontSize: '12px',
                       color: theme.colors.textTertiary,
                       textDecoration: 'none',
                     }}>↗</a>
                   )}
                 </div>
-                <p style={{ 
-                  fontSize: '13px', 
-                  margin: 0, 
+                <p style={{
+                  fontSize: '13px',
+                  margin: 0,
                   color: theme.colors.textSecondary,
                   fontWeight: '300',
                   lineHeight: '1.6',

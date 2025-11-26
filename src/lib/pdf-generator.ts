@@ -2,10 +2,6 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import html2pdf from 'html2pdf.js';
 import type { Resume } from '../types/resume';
-import ProfessionalHtmlTemplate from '../components/templates/html/ProfessionalHtmlTemplate';
-import MinimalistHtmlTemplate from '../components/templates/html/MinimalistHtmlTemplate';
-import CreativeHtmlTemplate from '../components/templates/html/CreativeHtmlTemplate';
-import StudentHtmlTemplate from '../components/templates/html/StudentHtmlTemplate';
 import BoldCreativeTemplate from '../components/templates/html/Boldcreativetemplate';
 import ExecutiveClassicTemplate from '../components/templates/html/Executiveclassictemplate';
 import MinimalNordicTemplate from '../components/templates/html/Minimalnordictemplate';
@@ -16,14 +12,6 @@ import ModernSidebarTemplate from '../components/templates/html/Modernsidebartem
  */
 function getTemplateComponent(templateId: string, resume: Resume) {
   switch (templateId) {
-    case 'professional':
-      return React.createElement(ProfessionalHtmlTemplate, { resume });
-    case 'minimalist':
-      return React.createElement(MinimalistHtmlTemplate, { resume });
-    case 'creative':
-      return React.createElement(CreativeHtmlTemplate, { resume });
-    case 'student':
-      return React.createElement(StudentHtmlTemplate, { resume });
     case 'boldcreative':
       return React.createElement(BoldCreativeTemplate, { resume });
     case 'executive':
@@ -33,7 +21,7 @@ function getTemplateComponent(templateId: string, resume: Resume) {
     case 'modernsidebar':
       return React.createElement(ModernSidebarTemplate, { resume });
     default:
-      return React.createElement(ProfessionalHtmlTemplate, { resume });
+      return React.createElement(ExecutiveClassicTemplate, { resume });
   }
 }
 

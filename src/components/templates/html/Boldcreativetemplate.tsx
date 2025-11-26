@@ -1,4 +1,3 @@
-import React from 'react';
 import type { Resume } from '../../../types/resume';
 
 // --- Bold Creative Theme: Vibrant & Distinctive ---
@@ -142,10 +141,6 @@ export default function BoldCreativeTemplate({ resume }: BoldCreativeTemplatePro
                 </span>
               )) || 'Your Name'}
             </h1>
-            
-            {resume.personalInfo?.jobTitle && (
-              <Badge text={resume.personalInfo.jobTitle} />
-            )}
           </div>
 
           {/* Contact Block */}
@@ -292,7 +287,7 @@ export default function BoldCreativeTemplate({ resume }: BoldCreativeTemplatePro
         )}
 
         {/* Projects */}
-        {hasArray(resume.projects) && (
+        {resume.projects && hasArray(resume.projects) && (
           <section>
             <SectionHeader title="Projects" number="03" />
             <div style={{
@@ -318,8 +313,8 @@ export default function BoldCreativeTemplate({ resume }: BoldCreativeTemplatePro
                     justifyContent: 'space-between',
                   }}>
                     {proj.name}
-                    {proj.url && (
-                      <a href={proj.url} style={{
+                    {proj.link && (
+                      <a href={proj.link} style={{
                         color: theme.colors.accent,
                         fontSize: '12px',
                         textDecoration: 'none',

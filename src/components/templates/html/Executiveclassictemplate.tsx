@@ -1,4 +1,3 @@
-import React from 'react';
 import type { Resume } from '../../../types/resume';
 
 // --- Executive Classic Theme: Timeless Elegance ---
@@ -102,20 +101,6 @@ export default function ExecutiveClassicTemplate({ resume }: ExecutiveClassicTem
         }}>
           {resume.personalInfo?.fullName || 'Your Name'}
         </h1>
-        
-        {resume.personalInfo?.jobTitle && (
-          <div style={{ 
-            fontFamily: theme.fonts.serif,
-            fontSize: '18px', 
-            fontWeight: '400',
-            fontStyle: 'italic',
-            color: theme.colors.textMuted,
-            marginBottom: '20px',
-            letterSpacing: '1px',
-          }}>
-            {resume.personalInfo.jobTitle}
-          </div>
-        )}
 
         {/* Contact Row */}
         <div style={{
@@ -286,22 +271,22 @@ export default function ExecutiveClassicTemplate({ resume }: ExecutiveClassicTem
           )}
 
           {/* Projects */}
-          {hasArray(resume.projects) && (
+          {resume.projects && hasArray(resume.projects) && (
             <div className="no-break">
               <SectionHeader title="Notable Projects" />
               {resume.projects.map((proj, index) => (
                 <div key={index} style={{ marginBottom: '15px' }}>
-                  <div style={{ 
+                  <div style={{
                     fontFamily: theme.fonts.serif,
-                    fontWeight: '600', 
-                    fontSize: '14px', 
-                    color: theme.colors.primary 
+                    fontWeight: '600',
+                    fontSize: '14px',
+                    color: theme.colors.primary
                   }}>
                     {proj.name}
-                    {proj.url && (
-                      <a href={proj.url} style={{ 
-                        marginLeft: '8px', 
-                        color: theme.colors.accent, 
+                    {proj.link && (
+                      <a href={proj.link} style={{
+                        marginLeft: '8px',
+                        color: theme.colors.accent,
                         fontSize: '11px',
                         textDecoration: 'none',
                       }}>↗</a>

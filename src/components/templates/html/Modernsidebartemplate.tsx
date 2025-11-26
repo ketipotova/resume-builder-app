@@ -1,4 +1,3 @@
-import React from 'react';
 import type { Resume } from '../../../types/resume';
 
 // --- Modern Sidebar Theme: Bold & Contemporary ---
@@ -183,19 +182,6 @@ export default function ModernSidebarTemplate({ resume }: ModernSidebarTemplateP
           {resume.personalInfo?.fullName || 'Your Name'}
         </h1>
 
-        {resume.personalInfo?.jobTitle && (
-          <div style={{
-            fontSize: '12px',
-            color: theme.colors.accent,
-            textAlign: 'center',
-            marginBottom: '30px',
-            fontWeight: '500',
-            letterSpacing: '0.5px',
-          }}>
-            {resume.personalInfo.jobTitle}
-          </div>
-        )}
-
         {/* Contact */}
         <SidebarSection title="Contact">
           {resume.personalInfo?.phone && <ContactItem icon={<Icons.Phone />} text={resume.personalInfo.phone} />}
@@ -347,11 +333,11 @@ export default function ModernSidebarTemplate({ resume }: ModernSidebarTemplateP
         )}
 
         {/* Projects */}
-        {hasArray(resume.projects) && (
+        {resume.projects && hasArray(resume.projects) && (
           <MainSection title="Key Projects">
-            <div style={{ 
-              display: 'grid', 
-              gridTemplateColumns: 'repeat(2, 1fr)', 
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(2, 1fr)',
               gap: '16px',
             }}>
               {resume.projects.map((proj, index) => (
@@ -361,10 +347,10 @@ export default function ModernSidebarTemplate({ resume }: ModernSidebarTemplateP
                   borderRadius: '8px',
                   border: `1px solid ${theme.colors.cardBg}`,
                 }}>
-                  <div style={{ 
+                  <div style={{
                     fontFamily: theme.fonts.display,
-                    fontWeight: '600', 
-                    fontSize: '13px', 
+                    fontWeight: '600',
+                    fontSize: '13px',
                     color: theme.colors.text,
                     marginBottom: '6px',
                     display: 'flex',
@@ -372,8 +358,8 @@ export default function ModernSidebarTemplate({ resume }: ModernSidebarTemplateP
                     gap: '8px',
                   }}>
                     {proj.name}
-                    {proj.url && (
-                      <a href={proj.url} style={{ color: theme.colors.accent, fontSize: '11px', textDecoration: 'none' }}>↗</a>
+                    {proj.link && (
+                      <a href={proj.link} style={{ color: theme.colors.accent, fontSize: '11px', textDecoration: 'none' }}>↗</a>
                     )}
                   </div>
                   <p style={{ fontSize: '12px', margin: 0, color: theme.colors.textMuted, lineHeight: '1.5' }}>

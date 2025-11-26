@@ -2,34 +2,6 @@ import { TemplateCard } from './TemplateCard';
 
 const templates = [
   {
-    id: 'professional',
-    name: 'Professional',
-    description: 'Clean two-column layout with navy blue headers. Perfect for corporate roles.',
-    thumbnail: 'from-blue-50 to-blue-100',
-    color: 'blue-600',
-  },
-  {
-    id: 'student',
-    name: 'Student',
-    description: 'Entry-level template with gray sidebar and yellow border. Perfect for students and fresh graduates.',
-    thumbnail: 'from-yellow-50 to-gray-100',
-    color: 'yellow-500',
-  },
-  {
-    id: 'minimalist',
-    name: 'Minimalist',
-    description: 'Single column with maximum whitespace. Clean typography focus.',
-    thumbnail: 'from-gray-50 to-gray-100',
-    color: 'gray-700',
-  },
-  {
-    id: 'creative',
-    name: 'Creative',
-    description: 'Two-column layout with dark blue sidebar and golden accents. Modern and professional.',
-    thumbnail: 'from-blue-50 to-amber-100',
-    color: 'blue-900',
-  },
-  {
     id: 'executive',
     name: 'Executive',
     description: 'Elegant serif design with warm gold accents. Ideal for senior leadership roles.',
