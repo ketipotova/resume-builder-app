@@ -9,11 +9,11 @@ const templates = [
     color: 'blue-600',
   },
   {
-    id: 'modern',
-    name: 'Modern',
-    description: 'Bold section headers with teal accents. Great for tech and creative industries.',
-    thumbnail: 'from-teal-50 to-teal-100',
-    color: 'teal-600',
+    id: 'student',
+    name: 'Student',
+    description: 'Entry-level template with gray sidebar and yellow border. Perfect for students and fresh graduates.',
+    thumbnail: 'from-yellow-50 to-gray-100',
+    color: 'yellow-500',
   },
   {
     id: 'minimalist',
@@ -32,9 +32,30 @@ const templates = [
   {
     id: 'executive',
     name: 'Executive',
-    description: 'Professional summary emphasis with gold accents. Ideal for senior roles.',
+    description: 'Elegant serif design with warm gold accents. Ideal for senior leadership roles.',
     thumbnail: 'from-amber-50 to-amber-100',
     color: 'amber-600',
+  },
+  {
+    id: 'boldcreative',
+    name: 'Bold Creative',
+    description: 'Vibrant design with numbered sections and orange accents. Stand out from the crowd.',
+    thumbnail: 'from-orange-50 to-red-100',
+    color: 'orange-600',
+  },
+  {
+    id: 'minimalnordic',
+    name: 'Minimal Nordic',
+    description: 'Ultra-minimal monochrome design. Calm, refined, and sophisticated.',
+    thumbnail: 'from-slate-50 to-gray-50',
+    color: 'slate-700',
+  },
+  {
+    id: 'modernsidebar',
+    name: 'Modern Sidebar',
+    description: 'Contemporary dark sidebar with cyan accents. Tech-forward and bold.',
+    thumbnail: 'from-cyan-50 to-slate-100',
+    color: 'cyan-600',
   },
 ];
 
