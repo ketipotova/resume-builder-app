@@ -26,3 +26,30 @@ export async function scrapeJobPosting(url: string) {
 
   return data;
 }
+
+/**
+ * Add email to waitlist
+ */
+export async function addToWaitlist(email: string) {
+  if (!supabase) {
+    // If Supabase is not configured, just succeed silently for demo purposes
+    console.warn('Supabase not configured. Waitlist submission simulated locally.');
+    return { success: true, simulated: true };
+  }
+
+  const { data, error } = await supabase
+    .from('waitlist')
+    .insert([
+      {
+        email,
+        created_at: new Date().toISOString()
+      }
+    ])
+    .select();
+
+  if (error) {
+    throw new Error(`Failed to add to waitlist: ${error.message}`);
+  }
+
+  return { success: true, data };
+}
