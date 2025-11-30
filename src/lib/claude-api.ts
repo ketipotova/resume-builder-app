@@ -1,7 +1,7 @@
 import Anthropic from '@anthropic-ai/sdk';
 import type { Resume, JobPosting, TailoringResult } from '../types/resume';
 
-const CLAUDE_MODEL = 'claude-sonnet-4-20250514';
+const CLAUDE_MODEL = 'claude-3-5-sonnet-20241022';
 
 // Initialize Anthropic client
 const getAnthropicClient = () => {
