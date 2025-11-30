@@ -38,8 +38,8 @@ export function ChatInterface({
         {messages.length === 0 ? (
           <div className="flex items-center justify-center h-full text-gray-500">
             <div className="text-center">
-              <p className="text-lg mb-2">Start a conversation</p>
-              <p className="text-sm">I'll help you build your professional resume</p>
+              <p className="text-lg mb-2">დაიწყეთ საუბარი</p>
+              <p className="text-sm">დაგეხმარებით შექმნათ თქვენი პროფესიონალური რეზიუმე</p>
             </div>
           </div>
         ) : (
@@ -59,7 +59,7 @@ export function ChatInterface({
                   </div>
                 </div>
                 <div className="bg-gray-100 rounded-2xl rounded-tl-none px-4 py-3">
-                  <p className="text-gray-600">Thinking...</p>
+                  <p className="text-gray-600">ვფიქრობ...</p>
                 </div>
               </div>
             )}
@@ -72,7 +72,7 @@ export function ChatInterface({
       <MessageInput
         onSend={onSendMessage}
         disabled={disabled || isLoading}
-        placeholder="Type your message..."
+        placeholder="დაწერეთ თქვენი შეტყობინება..."
       />
     </div>
   );
