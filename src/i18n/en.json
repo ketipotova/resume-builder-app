@@ -46,9 +46,9 @@
       "requirements": "Looking for: React, TypeScript, AWS, Microservices, Team Leadership",
       "keywordsMatched": "Keywords Matched",
       "optimization": "Optimization",
-      "opt1": " Highlighted AWS experience",
-      "opt2": " Emphasized team leadership",
-      "opt3": " Added TypeScript projects"
+      "opt1": "Highlighted AWS experience",
+      "opt2": "Emphasized team leadership",
+      "opt3": "Added TypeScript projects"
     },
     "templatesDemo": {
       "title": "Choose Your Style",
@@ -88,13 +88,13 @@
       "description": "Be among the first 50 users to experience the future of resume building. Get exclusive early access and lifetime benefits.",
       "emailPlaceholder": "Enter your email",
       "joinNow": "Join Now",
-      "limitedOffer": "<‰ Limited to first 50 users · No credit card required",
+      "limitedOffer": "Limited to first 50 users Â· No credit card required",
       "successTitle": "You're on the list!",
       "successDescription": "Thank you for joining! We'll notify you at {{email}} when we launch.",
       "getStartedNow": "Get Started Now"
     },
     "footer": {
-      "copyright": "© 2024 ResumeAI. All rights reserved."
+      "copyright": "Â© 2024 ResumeAI. All rights reserved."
     }
   }
 }
