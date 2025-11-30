@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { ArrowRight, CheckCircle, Sparkles, Target, FileText, Download, ChevronRight, ChevronLeft } from 'lucide-react';
 import { Button } from '../components/common/Button';
 import { addToWaitlist } from '../lib/supabase';
 
 export function Landing() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [currentStep, setCurrentStep] = useState(0);
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
@@ -14,27 +16,27 @@ export function Landing() {
   const steps = [
     {
       id: 'chat',
-      title: 'AI-Powered Chat',
+      title: t('landing.steps.chat'),
       icon: <Sparkles className="w-6 h-6" />,
     },
     {
       id: 'enhance',
-      title: 'Smart Enhancement',
+      title: t('landing.steps.enhance'),
       icon: <Target className="w-6 h-6" />,
     },
     {
       id: 'tailor',
-      title: 'Job Tailoring',
+      title: t('landing.steps.tailor'),
       icon: <FileText className="w-6 h-6" />,
     },
     {
       id: 'templates',
-      title: 'Beautiful Templates',
+      title: t('landing.steps.templates'),
       icon: <FileText className="w-6 h-6" />,
     },
     {
       id: 'download',
-      title: 'Download & Share',
+      title: t('landing.steps.download'),
       icon: <Download className="w-6 h-6" />,
     },
   ];
@@ -75,10 +77,10 @@ export function Landing() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <FileText className="w-8 h-8 text-primary-600" />
-            <span className="text-2xl font-bold text-gray-900">ResumeAI</span>
+            <span className="text-2xl font-bold text-gray-900">{t('landing.brand')}</span>
           </div>
           <Button onClick={() => navigate('/chat')} variant="outline">
-            Get Started
+            {t('landing.getStarted')}
           </Button>
         </div>
       </header>
@@ -87,12 +89,11 @@ export function Landing() {
       <section className="container mx-auto px-4 py-20 text-center">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-            Build Your Perfect Resume
-            <span className="block text-primary-600 mt-2">With AI in Minutes</span>
+            {t('landing.hero.title')}
+            <span className="block text-primary-600 mt-2">{t('landing.hero.subtitle')}</span>
           </h1>
           <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
-            Experience the future of resume building. Our AI-powered platform helps you create,
-            enhance, and tailor your resume for any job in just a few clicks.
+            {t('landing.hero.description')}
           </p>
         </div>
       </section>
@@ -100,9 +101,9 @@ export function Landing() {
       {/* Interactive Demo Section */}
       <section className="container mx-auto px-4 py-16">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-4">See How It Works</h2>
+          <h2 className="text-3xl font-bold text-center mb-4">{t('landing.demo.title')}</h2>
           <p className="text-gray-600 text-center mb-12">
-            Follow this interactive walkthrough to see our AI in action
+            {t('landing.demo.description')}
           </p>
 
           {/* Progress Bar */}
@@ -454,7 +455,7 @@ export function Landing() {
 
       {/* Footer */}
       <footer className="container mx-auto px-4 py-8 text-center text-gray-600">
-        <p>© 2024 ResumeAI. All rights reserved.</p>
+        <p>{t('landing.footer.copyright')}</p>
       </footer>
     </div>
   );

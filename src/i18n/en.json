@@ -1,0 +1,100 @@
+{
+  "landing": {
+    "brand": "ResumeAI",
+    "getStarted": "Get Started",
+    "hero": {
+      "title": "Build Your Perfect Resume",
+      "subtitle": "With AI in Minutes",
+      "description": "Experience the future of resume building. Our AI-powered platform helps you create, enhance, and tailor your resume for any job in just a few clicks."
+    },
+    "demo": {
+      "title": "See How It Works",
+      "description": "Follow this interactive walkthrough to see our AI in action"
+    },
+    "steps": {
+      "chat": "AI-Powered Chat",
+      "enhance": "Smart Enhancement",
+      "tailor": "Job Tailoring",
+      "templates": "Beautiful Templates",
+      "download": "Download & Share"
+    },
+    "chatDemo": {
+      "title": "Chat with AI Assistant",
+      "aiGreeting": "Hi! I'm your AI resume assistant. Let's build your perfect resume together. Can you tell me about your current role and experience?",
+      "userResponse1": "I'm a Senior Software Engineer with 8 years of experience in full-stack development, specializing in React and Node.js.",
+      "aiQuestion": "Great! Tell me about your key achievements. What are you most proud of in your current role?",
+      "userResponse2": "I led the development of a microservices platform that now serves 2M+ users, and reduced system latency by 40%."
+    },
+    "enhanceDemo": {
+      "title": "AI-Powered Enhancement",
+      "description": "Watch how our AI transforms your content into powerful, achievement-focused statements",
+      "before": "Before",
+      "after": "After AI Enhancement",
+      "beforeText1": "Worked on backend systems",
+      "beforeText2": "Helped with code reviews",
+      "beforeText3": "Fixed bugs and improved performance",
+      "afterText1": "Led development of microservices architecture serving 2M+ users",
+      "afterText2": "Reduced system latency by 40% through performance optimization",
+      "afterText3": "Mentored team of 5 junior developers, improving code quality by 35%"
+    },
+    "tailorDemo": {
+      "title": "Tailor to Any Job",
+      "description": "Paste a job link, and our AI optimizes your resume to match the job requirements",
+      "targetJob": "Target Job",
+      "position": "Senior Full Stack Engineer",
+      "company": "at Tech Corp",
+      "requirements": "Looking for: React, TypeScript, AWS, Microservices, Team Leadership",
+      "keywordsMatched": "Keywords Matched",
+      "optimization": "Optimization",
+      "opt1": " Highlighted AWS experience",
+      "opt2": " Emphasized team leadership",
+      "opt3": " Added TypeScript projects"
+    },
+    "templatesDemo": {
+      "title": "Choose Your Style",
+      "description": "Select from professionally designed templates that make your resume stand out",
+      "executive": "Executive",
+      "boldCreative": "Bold Creative",
+      "minimalNordic": "Minimal Nordic",
+      "modernSidebar": "Modern Sidebar"
+    },
+    "downloadDemo": {
+      "title": "Your Resume is Ready!",
+      "description": "Download your professionally crafted, ATS-friendly resume in PDF format. Ready to impress recruiters and land your dream job.",
+      "filename": "Resume.pdf",
+      "readyToDownload": "Ready to download"
+    },
+    "navigation": {
+      "previous": "Previous",
+      "next": "Next",
+      "joinWaitlist": "Join Waitlist"
+    },
+    "features": {
+      "aiPowered": {
+        "title": "AI-Powered",
+        "description": "Our advanced AI helps you write compelling, achievement-focused content that gets noticed"
+      },
+      "jobTailored": {
+        "title": "Job-Tailored",
+        "description": "Automatically optimize your resume for any job posting with smart keyword matching"
+      },
+      "beautifulDesign": {
+        "title": "Beautiful Design",
+        "description": "Choose from professionally designed templates that make your resume stand out"
+      }
+    },
+    "waitlist": {
+      "title": "Join the Waitlist",
+      "description": "Be among the first 50 users to experience the future of resume building. Get exclusive early access and lifetime benefits.",
+      "emailPlaceholder": "Enter your email",
+      "joinNow": "Join Now",
+      "limitedOffer": "<‰ Limited to first 50 users · No credit card required",
+      "successTitle": "You're on the list!",
+      "successDescription": "Thank you for joining! We'll notify you at {{email}} when we launch.",
+      "getStartedNow": "Get Started Now"
+    },
+    "footer": {
+      "copyright": "© 2024 ResumeAI. All rights reserved."
+    }
+  }
+}
